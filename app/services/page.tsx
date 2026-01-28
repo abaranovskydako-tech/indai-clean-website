@@ -1,8 +1,6 @@
+import React from "react";
+
 export default function ServicesPage() {
-  return (
-    <main>
-      <h1>Services</h1>
-      <p>Page layout - content to be added</p>
-    </main>
-  );
+  // TODO: compose services blocks from components according to /docs
+  return null;
 }
