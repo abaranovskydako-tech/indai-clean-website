@@ -2,12 +2,12 @@
 
 This repository implements the frontend **architectural skeleton** for the INDAI CLEAN website. Design and business logic are not implemented yet.
 
-## Source of truth
+## Canonical Documentation (Single Source of Truth)
 
 The **only** source of truth for architecture and copywriting is the `/docs` folder:
 
-- `AVD-Arkhitektura.docx`
-- `AVD-Produktovaia-lineika-Kopiraiting.docx`
+- `/docs/INDAI_MASTER_SPEC.md` — Primary canonical document
+- `/docs/INDAI_PRODUCT_COPY.md` — Secondary canonical document
 
 No other files (including this README, any `ARCHITECTURE.md`, or code comments) may contradict `/docs`.
 
@@ -26,4 +26,4 @@ No other files (including this README, any `ARCHITECTURE.md`, or code comments) 
 
 ## Project stage
 
-Architectural skeleton. Design and logic not implemented.
+Architectural framework. Design and logic not implemented.
