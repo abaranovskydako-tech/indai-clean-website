@@ -1,8 +1,6 @@
+import React from "react";
+
 export default function ContactPage() {
-  return (
-    <main>
-      <h1>Contact</h1>
-      <p>Get in touch with us</p>
-    </main>
-  );
+  // TODO: compose contact blocks from components according to /docs
+  return null;
 }
