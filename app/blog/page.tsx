@@ -1,8 +1,6 @@
+import React from "react";
+
 export default function BlogPage() {
-  return (
-    <main>
-      <h1>Blog</h1>
-      <p>Articles and updates</p>
-    </main>
-  );
+  // TODO: compose blog blocks from components according to /docs
+  return null;
 }
