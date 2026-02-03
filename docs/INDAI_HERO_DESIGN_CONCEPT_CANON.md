@@ -1,4 +1,10 @@
 # INDAI_HERO_DESIGN_CONCEPT_CANON.md
+⚠️ СТАТУС: УСТАРЕВШИЙ (SUPERSEDED)
+
+Данный документ заменён:
+INDAI_HERO_DESIGN_CONCEPT_CANON_v2.md
+
+Используется только для истории и аудита решений.
 
 Проект: INDAI Clean
 Тип документа: Каноническая дизайн-концепция HERO (без макетов)
