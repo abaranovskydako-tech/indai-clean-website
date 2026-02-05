@@ -1,77 +1,48 @@
 
-⚠️ **Правило:**  
-Файлы **НЕ должны** лежать напрямую в `/документы` — только в категориях.
+❌ Любая другая вложенность считается ошибкой.
 
 ---
 
-## 5. GOVERNANCE RULES
+## 4. GOVERNANCE RULES
 
-### 5.1 Hierarchy of Truth
-
-1. `INDAI_MASTER_SPEC.md` (this file)
-2. Other files in `00_УПРАВЛЕНИЕ`
-3. Canonical brand & product docs
-4. Content files
-5. Code implementation
+1. **Никаких дубликатов документов**
+2. **Один документ — одна роль**
+3. **Имена файлов — ТОЛЬКО латиница + UPPER_SNAKE_CASE**
+4. **Папки нумеруются и отражают приоритет**
+5. README.md — только навигационный, не канонический
 
 ---
 
-### 5.2 Naming Rules
+## 5. DOCUMENT LIFECYCLE
 
-- Folders: `NN_CATEGORY_NAME`
-- Files: `UPPER_SNAKE_CASE.md`
-- No Russian symbols in filenames
-- No duplicates
-- No vague names like `final`, `new`, `test`
+- Draft → Review → Canon → Archived
+- Архивируются документы **только** в `99_АРХИВ`
+- Удаление канонического документа запрещено без замены
 
 ---
 
-## 6. CONTENT RULES
+## 6. CHANGE MANAGEMENT
 
-- Content lives ONLY in:
-  - `01_БРЕНД`
-  - `02_КОНТЕНТ_УСЛУГИ`
-- Markdown is the **source**, not HTML
-- Pages are generated from MD files
-- No content logic in code
+Любое изменение:
+- либо обновляет этот файл
+- либо считается невалидным
 
 ---
 
-## 7. AI & AUTOMATION RULES
+## 7. ENFORCEMENT
 
-- AI widgets follow `INDAI_AI_WIDGET_PLACEMENT_CANON.md`
-- AI must not:
-  - disrupt UX
-  - block content
-  - override user intent
-- AI assists, not dominates
+Если:
+- разработчик
+- дизайнер
+- AI
+- внешний подрядчик
 
----
-
-## 8. CHANGE MANAGEMENT
-
-Any structural change requires:
-1. Update in this spec
-2. Commit message explaining reason
-3. No silent refactors
+нарушает INDAI_MASTER_SPEC.md → результат отклоняется.
 
 ---
 
-## 9. WHAT IS FORBIDDEN
+## 8. FINAL RULE
 
-❌ Duplicate folders  
-❌ Files outside categories  
-❌ Contradicting documentation  
-❌ Mixing governance and content  
-❌ Untracked decisions  
+**INDAI_MASTER_SPEC.md — это закон.**
 
----
-
-## 10. FINAL RULE
-
-If you are unsure where something belongs —  
-**it belongs in 00_УПРАВЛЕНИЕ until decided.**
-
----
-
-**This document is law.**
+Если есть сомнение — смотри сюда.
