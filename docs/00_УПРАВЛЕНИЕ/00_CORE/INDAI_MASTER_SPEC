@@ -1,652 +1,742 @@
-# INDAI_MASTER_SPEC.md — DEEP AUDIT REPORT
+# INDAI_MASTER_SPEC.md
 
-**Auditor role:** Senior Engineering Architect (20yr experience)
-**Date:** 2026-02-07
-**Subject:** INDAI_MASTER_SPEC.md — completeness, maturity, value, gaps
-**Methodology:** Section-by-section analysis → Cross-reference with SKILL.md → Gap matrix → Recommendations
-
----
-
-## EXECUTIVE SUMMARY
-
-The MASTER_SPEC is a **governance-level intent document** — it successfully communicates *what the project wants to be*. However, it currently operates at **~35% maturity** as a true engineering specification. It lacks enforceability, measurability, and critical technical definitions that a production frontend project requires.
-
-**Verdict:** Strong vision. Weak specification. Needs 3 layers of reinforcement to become an engineering canon.
-
-| Dimension | Score | Comment |
-|-----------|-------|---------|
-| Clarity of intent | 9/10 | Excellent — unambiguous governance voice |
-| Structural completeness | 4/10 | Missing 6+ critical sections |
-| Technical precision | 2/10 | Almost no enforceable technical rules |
-| Cross-reference integrity | 3/10 | References documents but doesn't validate them |
-| Contradiction safety | 5/10 | Has hierarchy, but no conflict resolution protocol |
-| Scalability | 4/10 | Works for 1 developer; breaks at 3+ |
+Project: INDAI Clean  
+Repository type: Frontend + API (Next.js full-stack)  
+Document role: Single Source of Truth  
+Status: CANONICAL — OVERRIDES ALL  
+Document-ID: INDAI-GOV-001  
+Version: 3.0.0  
+Last updated: 2026-02-07  
 
 ---
 
-## SECTION-BY-SECTION ANALYSIS
+## Changelog
 
-### §1. PURPOSE — ✅ Strong
-
-> "This document is the only authoritative specification... There are no exceptions."
-
-**Value:** Maximum. This is the correct governance posture.
-
-**Gap:** No version number, no changelog, no document ID. A "law" without a version is unenforceable — which version is law?
-
-**Recommendation:**
-```markdown
-Document-ID: INDAI-GOV-001
-Version: 1.0.0 (semver)
-Last Updated: 2026-02-05
-Changelog:
-  - 1.0.0 (2026-02-05): Initial canonical release
-```
+| Version | Date | Summary |
+|---------|------|---------|
+| 1.0.0 | 2026-02-05 | Initial canonical release |
+| 2.0.0 | 2026-02-07 | Added metrics, full stack, language policy, conflict protocol |
+| 3.0.0 | 2026-02-07 | Added /src canon, API governance, SEO, security, a11y, env vars, design system reference, content schema, analytics, error handling, dependency management, performance budget. Full audit pass. |
 
 ---
 
-### §2. CORE GOALS — ⚠️ Incomplete
+## 1. PURPOSE
 
-Four goals listed. All valid. But:
+This document is the **only authoritative specification** for the INDAI Clean project.
 
-**Gap 1:** No success criteria. How do we know when "clean, scalable, non-chaotic" is achieved? Without metrics, this is aspiration, not specification.
+Any file, code, documentation, architectural decision, automation, or content  
+that contradicts this document **must be changed** to comply with it.
 
-**Gap 2:** Missing goals that a production Next.js project requires:
-- **Performance targets** (LCP, FID, CLS)
-- **SEO requirements** (meta, OG, structured data)
-- **Accessibility standard** (WCAG level)
-- **i18n strategy** (Russian-only? Bilingual? Future-proof?)
-- **Deployment & hosting target** (Vercel? Self-hosted? Yandex Cloud?)
-- **Browser/device support matrix**
+There are no exceptions.
 
-**Recommendation — add §2.1 MEASURABLE TARGETS:**
-```markdown
-## 2.1 Measurable Targets
-- Lighthouse Performance: ≥ 90
-- Lighthouse Accessibility: ≥ 95
-- LCP: < 2.5s
-- CLS: < 0.1
-- FID: < 100ms
-- Zero ESLint errors on CI
-- Zero TypeScript strict-mode errors
-- Test coverage: ≥ 60% (unit + integration)
-```
+This document:
+- overrides any code implementation;
+- overrides any child canon document;
+- overrides SKILL.md where they conflict;
+- defines what constitutes a correct implementation of this project.
 
 ---
 
-### §3. FIXED TECHNOLOGY STACK — 🔴 Critical Gaps
+## 2. CORE GOALS
 
-**What's there:** Framework, language, styling, architecture, content source, repo language.
+### 2.1 Strategic goals
 
-**What's missing — and why it matters:**
+- Maintain a clean, scalable, non-chaotic repository
+- Enforce strict document and decision hierarchy
+- Eliminate duplication, ambiguity, and undocumented decisions
+- Enable AI-assisted development **without losing architectural control**
+- Guarantee project reproducibility as the team grows
 
-| Missing item | Risk if undefined |
-|---|---|
-| Next.js version pin (13+ is vague) | SKILL.md says 14. Spec says 13+. **Already contradicted.** |
-| Node.js version | Deployment breaks silently |
-| Package manager (npm/yarn/pnpm) | Lock file conflicts |
-| Database (PostgreSQL + Prisma) | SKILL.md defines it; MASTER_SPEC ignores it entirely. **Major omission.** |
-| State management | Each developer picks their own |
-| Form handling | SKILL.md says react-hook-form + Zod. Spec is silent. |
-| Icons library | SKILL.md says Lucide. Spec is silent. |
-| Storage (S3 / Yandex Cloud) | SKILL.md defines it. Spec ignores it. |
-| Testing framework | No testing strategy at all |
-| Linting / formatting | No ESLint/Prettier config defined |
-| CI/CD pipeline | No mention |
-| Deployment target | No mention |
-| Environment variables schema | No mention |
+### 2.2 Measurable criteria (mandatory)
 
-**🔴 CRITICAL CONTRADICTION:**
-- MASTER_SPEC §3: `Next.js 13+`
-- SKILL.md: `Next.js 14 (App Router)`
-- MASTER_SPEC §3: No database mentioned
-- SKILL.md: `PostgreSQL + Prisma 7.2` with full schema
+The project is considered correctly implemented only when ALL conditions are met:
 
-This means **the MASTER_SPEC does not reflect the actual project**. Either the spec must be updated, or the SKILL.md is unauthorized.
+| Metric | Target |
+|--------|--------|
+| Lighthouse Performance | ≥ 90 |
+| Lighthouse Accessibility | ≥ 95 |
+| Lighthouse SEO | ≥ 95 |
+| LCP | < 2.5s |
+| CLS | < 0.1 |
+| INP (replaces FID) | < 200ms |
+| ESLint errors in CI | 0 |
+| TypeScript strict-mode errors | 0 |
+| Test coverage (unit + integration) | ≥ 60% |
+| Non-canonical files in `/docs` | 0 |
+| Total JS bundle (first load) | < 150KB gzipped |
+| Largest image per page | < 500KB |
 
-**Recommendation — full stack definition:**
-```markdown
-## 3. FIXED TECHNOLOGY STACK
+---
 
-### Core
+## 3. TECHNOLOGY STACK (immutable without addendum)
+
+### 3.1 Core
+
 | Layer | Technology | Version |
 |-------|-----------|---------|
 | Runtime | Node.js | 20 LTS |
 | Framework | Next.js (App Router) | 14.x |
 | Language | TypeScript (strict) | 5.x |
-| Styling | Tailwind CSS | 3.4 |
+| Styling | Tailwind CSS | 3.4+ |
 | Package manager | pnpm | 9.x |
+| Icons | Lucide React | latest |
 
-### Data
+### 3.2 Data & forms
+
 | Layer | Technology | Version |
 |-------|-----------|---------|
 | Database | PostgreSQL | 16 |
 | ORM | Prisma | 7.x |
 | Validation | Zod | 3.x |
 | Forms | react-hook-form | 7.x |
-| Storage | Yandex Cloud S3 | — |
+| File storage | Yandex Cloud S3 (or compatible) | — |
 
-### DX & Quality
-| Tool | Purpose |
-|------|---------|
-| ESLint | Code quality |
-| Prettier | Formatting |
-| Vitest / Jest | Unit testing |
-| Playwright | E2E testing |
+### 3.3 Quality & testing
 
-### Content
-| Source | Format |
-|--------|--------|
-| Documentation | Markdown (.md) |
-| UI text | Russian |
-| Code/paths/files | English only |
-```
+| Tool | Purpose | Required |
+|------|---------|----------|
+| ESLint | Code quality | Yes |
+| Prettier | Formatting | Yes |
+| Vitest | Unit & integration tests | Yes |
+| Playwright | E2E tests | Yes |
 
----
+### 3.4 Approved auxiliary packages
 
-### §4. CANONICAL /docs STRUCTURE — ✅ Good, ⚠️ Incomplete
+| Package | Purpose |
+|---------|---------|
+| clsx / tailwind-merge | Conditional class composition (`cn()`) |
+| next-seo | SEO meta management |
+| sharp | Image optimization |
+| @prisma/client | Database client |
 
-**Value:** Clear hierarchy. Numbered categories. Strict placement rule.
-
-**Gaps:**
-
-| # | Gap | Impact |
-|---|-----|--------|
-| 1 | No `/docs/04_INFRASTRUCTURE` category | Deployment, env vars, CI/CD have no home |
-| 2 | No `/docs/05_DESIGN_SYSTEM` category | Colors, typography, spacing, components have no canonical home |
-| 3 | `02_CONTENT_SERVICES` mixes canon docs (`INDAI_SERVICES_PAGES_CANON.md`) with content files (`heat_exchanger_cleaning.md`). Naming convention broken — content files are `lower_snake_case`, not `UPPER_SNAKE_CASE` | Violates §6 naming rules |
-| 4 | No rule for maximum nesting depth | Could become chaotic with subdirectories |
-| 5 | No rule for file size limits | A 5000-line MASTER_SPEC defeats its purpose |
-
-**Recommendation — extended structure:**
-```
-/docs
-├── 00_GOVERNANCE
-├── 01_BRAND
-├── 02_CONTENT_SERVICES
-│   ├── INDAI_SERVICES_PAGES_CANON.md    # UPPER_SNAKE (canon)
-│   └── content/                          # subdirectory for actual content
-│       ├── heat_exchanger_cleaning.md
-│       └── pipe_cleaning.md
-├── 03_PRODUCTS
-├── 04_INFRASTRUCTURE                     # NEW
-│   ├── INDAI_DEPLOYMENT_CANON.md
-│   ├── INDAI_ENV_VARS_CANON.md
-│   └── INDAI_CI_CD_CANON.md
-├── 05_DESIGN_SYSTEM                      # NEW
-│   ├── INDAI_COLOR_PALETTE_CANON.md
-│   ├── INDAI_TYPOGRAPHY_CANON.md
-│   └── INDAI_COMPONENT_LIBRARY_CANON.md
-└── 99_ARCHIVE
-```
-
-**Also add:**
-```markdown
-### 4.1 Naming Exception
-Content source files in 02_CONTENT_SERVICES/content/ may use lower_snake_case
-as they serve as data source for page generation, not governance documents.
-
-### 4.2 Nesting Rules
-- Maximum depth: 2 levels (category/subcategory)
-- No file > 500 lines; split into sub-documents if exceeded
-```
+Any package not listed here requires explicit approval via addendum to this document.
 
 ---
 
-### §5. HIERARCHY OF TRUTH — ✅ Good, ⚠️ Needs Protocol
+## 4. LANGUAGE POLICY
 
-Five-level hierarchy is correct. But:
-
-**Gap:** No conflict resolution protocol. What happens when a developer finds a contradiction?
-
-**Recommendation:**
-```markdown
-## 5.1 Conflict Resolution Protocol
-When a contradiction is found:
-1. The higher-level document wins immediately (no debate)
-2. The lower-level document must be updated within the same PR
-3. An entry is added to AUDIT_REPORT.md documenting the contradiction
-4. If both documents are at the same level → escalate to MASTER_SPEC owner
-```
-
----
-
-### §6. NAMING RULES — ✅ Solid, ⚠️ Incomplete
-
-Rules are clear. But:
-
-| Gap | Example |
-|-----|---------|
-| No branch naming convention | `feature/hero-section` vs `feat/hero` vs `hero-update`? |
-| No component naming convention | `HeroSection.tsx` vs `hero-section.tsx` vs `Hero.tsx`? |
-| No route naming convention | `/services` vs `/uslugi`? |
-| No commit message format | Conventional commits? Free-form? |
-| No PR title format | — |
-| Content files violate UPPER_SNAKE rule | `heat_exchanger_cleaning.md` in §4 |
-
-**Recommendation — add §6.1:**
-```markdown
-### 6.1 Code Naming Conventions
-| Entity | Convention | Example |
-|--------|-----------|---------|
-| Components | PascalCase | `HeroSection.tsx` |
-| Utilities | camelCase | `formatPrice.ts` |
-| Routes (URL) | kebab-case, English | `/services/pipe-cleaning` |
-| CSS classes | Tailwind only | — |
-| Environment vars | UPPER_SNAKE_CASE | `DATABASE_URL` |
-| Git branches | type/kebab-case | `feat/hero-video`, `fix/quiz-validation` |
-| Commits | Conventional Commits | `feat(hero): add video background` |
-```
-
----
-
-### §7. CONTENT RULES — ⚠️ Weak
-
-Five lines for content governance on a content-driven site is insufficient.
-
-**Gaps:**
-
-| # | Missing rule | Why it matters |
-|---|---|---|
-| 1 | No i18n/language policy for content | UI is Russian (per SKILL.md), but spec says "English only" for repo. Where's the boundary? |
-| 2 | No content schema | What fields does a service page MD need? (title, slug, description, price, image?) |
-| 3 | No image/media management rules | Where do images live? Naming? Formats? Max size? |
-| 4 | No SEO metadata requirements | title, description, OG tags — per page or global? |
-| 5 | No content review/approval process | Who approves new service pages? |
-| 6 | "Pages are generated from MD" — but no generation rules | Which MD fields map to which components? |
-
-**Recommendation — expand §7:**
-```markdown
-## 7. CONTENT RULES
-
-### 7.1 Language Policy
 | Context | Language |
 |---------|----------|
-| File names, paths, code, variables | English |
-| Documentation (governance, specs) | English |
-| User-facing UI text, content | Russian |
+| Code, paths, file names, variables | English |
+| Canonical documentation (`/docs`) | English |
+| User-facing UI text | Russian |
+| Page content (services, copy) | Russian |
 | URL slugs | English (kebab-case) |
-| Git commits, PR descriptions | English |
+| Git commits, PR titles, branch names | English |
+| Code comments | English |
 
-### 7.2 Service Page Schema (Markdown Frontmatter)
-Every service content file MUST include:
----
-title: "Очистка теплообменников"
-slug: "heat-exchanger-cleaning"
-description: "..."
-category: "industrial-cleaning"
-seo_title: "..."
-seo_description: "..."
-hero_image: "/images/services/heat-exchanger.webp"
-status: "published" | "draft"
 ---
 
-### 7.3 Media Rules
-- Format: WebP preferred, JPEG fallback
-- Max file size: 500KB (hero images), 200KB (thumbnails)
-- Location: /public/images/{category}/{name}.webp
-- Naming: kebab-case, descriptive
+## 5. CANONICAL `/docs` STRUCTURE
+
+```
+/docs
+├── 00_GOVERNANCE/
+│   ├── INDAI_MASTER_SPEC.md            # This file — top-level law
+│   ├── INDAI_PROJECT_STATUS.md         # Current project state
+│   ├── AUDIT_REPORT.md                 # Contradiction & audit log
+│   └── INDAI_CHANGELOG.md             # Cross-project changelog
+│
+├── 01_BRAND/
+│   ├── INDAI_HERO_COPY_CANON.md       # Hero block: text & messaging
+│   ├── INDAI_HERO_DESIGN_CONCEPT_CANON.md  # Hero block: visual design rules
+│   ├── INDAI_HERO_VIDEO_CANON.md      # Hero block: video requirements
+│   └── INDAI_TONE_OF_VOICE_CANON.md   # Brand voice & tone rules
+│
+├── 02_CONTENT_SERVICES/
+│   ├── INDAI_SERVICES_PAGES_CANON.md  # Service page structure & rules
+│   └── content/                        # Service content source files
+│       ├── heat_exchanger_cleaning.md
+│       └── pipe_cleaning.md
+│
+├── 03_PRODUCTS/
+│   ├── INDAI_PRODUCT_COPY.md          # Product messaging
+│   └── INDAI_AI_WIDGET_PLACEMENT_CANON.md  # AI widget behavior & placement
+│
+├── 04_INFRASTRUCTURE/
+│   ├── INDAI_DEPLOYMENT_CANON.md      # Hosting, CI/CD, environments
+│   ├── INDAI_ENV_VARS_CANON.md        # Environment variables registry
+│   └── INDAI_DATABASE_CANON.md        # Schema governance, migrations
+│
+├── 05_DESIGN_SYSTEM/
+│   ├── INDAI_COLOR_PALETTE_CANON.md   # Brand colors, usage rules
+│   ├── INDAI_TYPOGRAPHY_CANON.md      # Fonts, sizes, hierarchy
+│   └── INDAI_COMPONENT_LIBRARY_CANON.md  # UI components registry
+│
+└── 99_ARCHIVE/                         # Deprecated / historical only
 ```
 
+### Rules
+
+- No files may exist directly in `/docs` root
+- Maximum nesting depth: 2 levels from `/docs` (e.g. `02_CONTENT_SERVICES/content/file.md`)
+- Canon documents: `UPPER_SNAKE_CASE.md`
+- Content source files (in `content/` subdirectories): `lower_snake_case.md` allowed
+- Any single file exceeding 500 lines **must** be split into sub-documents  
+  **Exception:** `INDAI_MASTER_SPEC.md` is exempt — it must remain a single authoritative file
+- SUPERSEDED documents **must** be moved to `99_ARCHIVE/` with a header referencing the replacement
+
 ---
 
-### §8. AI & AUTOMATION RULES — ⚠️ Vague
+## 6. CANONICAL `/src` STRUCTURE
 
-Four lines about AI widgets. No engineering constraints.
+```
+src/
+├── app/
+│   ├── layout.tsx                # Root layout (SEO, fonts, global providers)
+│   ├── page.tsx                  # Homepage
+│   ├── not-found.tsx             # Custom 404
+│   ├── error.tsx                 # Global error boundary
+│   ├── globals.css               # Tailwind base + custom properties
+│   ├── (routes)/                 # Grouped route segments
+│   │   └── services/
+│   │       └── [slug]/
+│   │           └── page.tsx
+│   └── api/
+│       ├── leads/route.ts        # Form submissions
+│       ├── quiz/route.ts         # Quiz calculator
+│       └── upload/route.ts       # S3 file upload
+│
+├── components/
+│   ├── layout/                   # Header, Footer, Navigation
+│   ├── sections/                 # Page sections (HeroSection, ServicesSection, etc.)
+│   └── ui/                       # Atomic UI: Button, Card, Input, Badge
+│
+├── lib/
+│   ├── prisma.ts                 # Prisma client singleton — sole import point
+│   ├── s3.ts                     # File upload utilities
+│   ├── utils.ts                  # Helpers (cn(), formatPrice, etc.)
+│   └── constants.ts              # App-wide constants
+│
+└── types/
+    └── index.ts                  # Shared TypeScript types & interfaces
+```
 
-**Gaps:**
+### Rules
 
-| # | Missing | Risk |
-|---|---------|------|
-| 1 | No API integration spec | How does the AI widget communicate? REST? WebSocket? |
-| 2 | No fallback behavior | What happens when AI is offline? |
-| 3 | No loading/error states | UX gap |
-| 4 | No data privacy rules | Does the widget send user data? Where? |
-| 5 | No performance budget | Widget JS bundle size? |
-| 6 | "assist, not dominate" — not measurable | — |
+- **No new top-level directories** inside `src/` without addendum to this spec
+- Components with `useState`/`useEffect` **must** have `'use client'` directive
+- Server Components are the default — only add `'use client'` when required
+- Prisma client: import only from `@/lib/prisma`, never instantiate directly
+- All component files: PascalCase (`HeroSection.tsx`)
+- All utility files: camelCase (`formatPrice.ts`)
+- All route handlers: `route.ts` inside descriptive folder (`api/leads/route.ts`)
+- No business text or service copy inside components — all sourced from content MD
 
-**Recommendation — expand §8:**
-```markdown
-## 8. AI & AUTOMATION RULES
+---
 
-### 8.1 Governance
-- All AI widget behavior defined in: 03_PRODUCTS/INDAI_AI_WIDGET_PLACEMENT_CANON.md
+## 7. HIERARCHY OF TRUTH
+
+1. **INDAI_MASTER_SPEC.md** (this file)
+2. Other documents in `00_GOVERNANCE/`
+3. Canonical brand & product documents (`01_BRAND/`, `03_PRODUCTS/`)
+4. Infrastructure & design system canons (`04_INFRASTRUCTURE/`, `05_DESIGN_SYSTEM/`)
+5. Content & service files (`02_CONTENT_SERVICES/`)
+6. Code implementation
+
+**Code never overrides documentation.**
+
+---
+
+## 8. CONFLICT RESOLUTION PROTOCOL
+
+When a contradiction is discovered:
+
+1. The higher-level document wins immediately — no discussion required
+2. The lower-level document **must** be updated in the same PR
+3. An entry is added to `AUDIT_REPORT.md` documenting the contradiction and resolution
+4. If both documents are at the same hierarchy level → escalate to MASTER_SPEC owner
+5. If MASTER_SPEC itself is ambiguous → owner publishes a clarifying addendum
+
+---
+
+## 9. NAMING CONVENTIONS
+
+### Code
+
+| Entity | Convention | Example |
+|--------|-----------|---------|
+| React components | PascalCase | `HeroSection.tsx` |
+| Utility functions | camelCase | `formatPrice.ts` |
+| Constants | UPPER_SNAKE_CASE | `MAX_FILE_SIZE` |
+| URL routes | kebab-case, English | `/services/pipe-cleaning` |
+| CSS | Tailwind classes only | — |
+| Environment variables | UPPER_SNAKE_CASE | `DATABASE_URL` |
+| Prisma models | PascalCase singular | `Lead`, `Service` |
+| Prisma fields | camelCase | `createdAt`, `leadId` |
+| Database tables (auto) | lowercase plural | `leads`, `services` |
+
+### Git
+
+| Entity | Convention | Example |
+|--------|-----------|---------|
+| Branches | `type/kebab-case` | `feat/hero-video`, `fix/quiz-validation` |
+| Commits | Conventional Commits | `feat(hero): add video background` |
+| PR titles | Same as commit | `fix(api): validate phone format` |
+
+### `/docs`
+
+| Entity | Convention | Example |
+|--------|-----------|---------|
+| Folders | `NN_CATEGORY_NAME` | `01_BRAND` |
+| Canon files | `UPPER_SNAKE_CASE.md` | `INDAI_HERO_COPY_CANON.md` |
+| Content files | `lower_snake_case.md` | `heat_exchanger_cleaning.md` |
+
+---
+
+## 10. CONTENT RULES
+
+### 10.1 General
+
+- Markdown is the source of truth for all page content
+- React components **must not** contain hardcoded service text or copy
+- Content lives only in `01_BRAND/` and `02_CONTENT_SERVICES/`
+
+### 10.2 Service page frontmatter schema (mandatory)
+
+Every service content file in `02_CONTENT_SERVICES/content/` **must** include:
+
+```yaml
+---
+title: "Очистка теплообменников"           # Required — page h1
+slug: "heat-exchanger-cleaning"             # Required — URL segment (EN, kebab)
+description: "Промышленная очистка..."      # Required — meta description
+category: "industrial-cleaning"             # Required — service category
+seo_title: "Очистка теплообменников | INDAI Clean"  # Required
+seo_description: "..."                      # Required — max 160 chars
+hero_image: "/images/services/heat-exchanger.webp"   # Required
+og_image: "/images/og/heat-exchanger.jpg"   # Required — 1200×630
+status: "published"                         # Required — published | draft
+created: "2026-01-15"                       # Required
+updated: "2026-02-07"                       # Required
+---
+```
+
+Files missing required frontmatter fields **must not** be deployed.
+
+### 10.3 Homepage sections (canonical order)
+
+| # | Component | Purpose |
+|---|-----------|---------|
+| 1 | HeroSection | Value proposition + primary CTA |
+| 2 | ProcessSection | 4 steps (3 free) |
+| 3 | ServicesSection | 6 service cards |
+| 4 | CasesSection | Before/After cases |
+| 5 | QuizSection | Cost calculator |
+| 6 | TrustSection | Guarantees & trust signals |
+| 7 | GallerySection | Work photos |
+| 8 | FAQSection | Questions & answers |
+| 9 | CTASection | Final call-to-action |
+
+Section order changes require addendum to this document.
+
+---
+
+## 11. API GOVERNANCE
+
+### 11.1 Canonical routes
+
+| Route | Method | Purpose | Auth |
+|-------|--------|---------|------|
+| `/api/leads` | POST | Form submissions (F1–F6) | Public |
+| `/api/quiz` | POST | Quiz calculator | Public |
+| `/api/upload` | POST | S3 file upload | Public (rate-limited) |
+
+New API routes require addendum to this document.
+
+### 11.2 Request validation
+
+- Every API route **must** validate input with Zod schema
+- Invalid input returns `400` with structured error
+
+### 11.3 Response format (mandatory)
+
+Success:
+```json
+{
+  "success": true,
+  "data": { ... }
+}
+```
+
+Error:
+```json
+{
+  "success": false,
+  "error": {
+    "code": "VALIDATION_ERROR",
+    "message": "Human-readable message"
+  }
+}
+```
+
+### 11.4 Rate limiting
+
+- `/api/upload`: max 10 requests per IP per minute
+- `/api/leads`, `/api/quiz`: max 30 requests per IP per minute
+
+### 11.5 Security rules for API
+
+- No PII in URL query parameters
+- All user input sanitized before database write
+- File uploads: whitelist extensions (jpg, jpeg, png, webp, pdf), max 10MB
+
+---
+
+## 12. DATABASE GOVERNANCE
+
+### 12.1 Schema location
+
+- Canonical schema: `prisma/schema.prisma`
+- Schema documentation: `04_INFRASTRUCTURE/INDAI_DATABASE_CANON.md`
+
+### 12.2 Core models
+
+| Model | Purpose |
+|-------|---------|
+| Lead | Form/quiz submissions |
+| Service | Service catalog |
+
+New models require addendum to this document.
+
+### 12.3 Migration rules
+
+- Migrations generated via `pnpm prisma migrate dev`
+- Every migration must have a descriptive name: `pnpm prisma migrate dev --name add_email_to_lead`
+- Destructive migrations (drop column/table) require owner approval
+- Migration files are committed to Git — never in `.gitignore`
+
+---
+
+## 13. ENVIRONMENT VARIABLES
+
+### 13.1 Required variables
+
+| Variable | Example | Where used |
+|----------|---------|-----------|
+| `DATABASE_URL` | `postgresql://...` | Prisma |
+| `S3_ENDPOINT` | `https://storage.yandexcloud.net` | File upload |
+| `S3_BUCKET` | `indai-uploads` | File upload |
+| `S3_ACCESS_KEY` | `***` | File upload |
+| `S3_SECRET_KEY` | `***` | File upload |
+| `NEXT_PUBLIC_SITE_URL` | `https://indai.ru` | SEO, OG |
+| `NEXT_PUBLIC_GA_ID` | `G-XXXXXXX` | Analytics |
+
+### 13.2 Rules
+
+- `.env.local` is **never** committed (in `.gitignore`)
+- `.env.example` with all required keys (no values) **must** be committed
+- No secrets in `NEXT_PUBLIC_*` variables
+- All env vars documented in `04_INFRASTRUCTURE/INDAI_ENV_VARS_CANON.md`
+
+---
+
+## 14. SEO REQUIREMENTS
+
+### 14.1 Per-page requirements
+
+Every page **must** have:
+- `<title>` — unique, max 60 characters
+- `<meta name="description">` — unique, max 160 characters
+- `<link rel="canonical">` — absolute URL
+- Open Graph tags: `og:title`, `og:description`, `og:image` (1200×630), `og:url`
+- `og:locale` = `ru_RU`
+- `og:type` = `website` (homepage) or `article` (service pages)
+
+### 14.2 Site-wide requirements
+
+- `/robots.txt` — allow all, reference sitemap
+- `/sitemap.xml` — auto-generated, includes all published service pages
+- Structured data (JSON-LD): `Organization`, `LocalBusiness`, `Service` schemas
+- All images have `alt` text in Russian
+- No orphan pages (every page reachable from navigation)
+
+---
+
+## 15. SECURITY
+
+### 15.1 Headers (via `next.config.js` or middleware)
+
+| Header | Value |
+|--------|-------|
+| `X-Frame-Options` | `DENY` |
+| `X-Content-Type-Options` | `nosniff` |
+| `Referrer-Policy` | `strict-origin-when-cross-origin` |
+| `Permissions-Policy` | `camera=(), microphone=(), geolocation=()` |
+| Content-Security-Policy | Defined per environment |
+
+### 15.2 Input security
+
+- All user input sanitized server-side before database write
+- SQL injection prevented by Prisma parameterized queries (never raw SQL without `.queryRaw` with parameters)
+- XSS prevented by React's default escaping + no `dangerouslySetInnerHTML` without sanitization
+
+### 15.3 CORS
+
+- API routes: same-origin only in production
+- Development: localhost origins allowed
+
+---
+
+## 16. ACCESSIBILITY
+
+### 16.1 Standard
+
+- Target: WCAG 2.1 Level AA
+- Lighthouse Accessibility score ≥ 95 (from §2.2)
+
+### 16.2 Rules
+
+- Color contrast: ≥ 4.5:1 body text, ≥ 3:1 large text (18px+)
+- All interactive elements keyboard-accessible
+- All images have descriptive `alt` attributes
+- Form inputs have associated `<label>` elements
+- Focus indicators visible on all interactive elements
+- Skip-to-content link on every page
+- ARIA landmarks: `<main>`, `<nav>`, `<footer>`, `<header>`
+- No auto-playing media with sound
+- Motion: respect `prefers-reduced-motion`
+
+---
+
+## 17. ERROR HANDLING
+
+### 17.1 Client-side
+
+| File | Purpose |
+|------|---------|
+| `src/app/not-found.tsx` | Custom 404 page |
+| `src/app/error.tsx` | Global error boundary |
+| `src/app/loading.tsx` | Global loading state (optional) |
+
+- Error boundary catches rendering errors and shows user-friendly message
+- 404 page offers navigation back to homepage and services
+- No raw error messages shown to users
+
+### 17.2 Server-side (API)
+
+- All API route handlers wrapped in try/catch
+- Errors logged server-side with context (route, timestamp, input shape)
+- No stack traces returned to client in production
+- Zod validation errors mapped to human-readable messages
+
+### 17.3 External service failures
+
+- S3 unavailable → upload form shows "service temporarily unavailable" message
+- Database unavailable → static fallback content displayed
+- AI widget unavailable → static CTA form shown (see §19)
+
+---
+
+## 18. ANALYTICS & TRACKING
+
+### 18.1 Provider
+
+Google Analytics 4 via `NEXT_PUBLIC_GA_ID`
+
+### 18.2 Canonical events
+
+| Event | Trigger | Required params |
+|-------|---------|----------------|
+| `submit_form` | Form F1–F6 submission | `form_id`, `source` |
+| `quiz_complete` | Quiz finished | `result_value` |
+| `upload_media` | File uploaded | `file_type` |
+| `click_cta` | CTA button clicked | `cta_id`, `section` |
+| `page_view` | Route change | Auto (GA4 default) |
+
+New events require addendum to this document.
+
+### 18.3 Rules
+
+- Analytics script loaded via `next/script` with `strategy="afterInteractive"`
+- No tracking before user consent (if cookie banner required by law)
+- No PII in event parameters
+
+---
+
+## 19. AI & AUTOMATION
+
+### 19.1 Governance
+
+- All AI widget behavior defined in `03_PRODUCTS/INDAI_AI_WIDGET_PLACEMENT_CANON.md`
 - No AI feature may be added without updating that document first
 
-### 8.2 Technical Constraints
-- AI widget must lazy-load (not in critical path)
+### 19.2 Technical constraints
+
+- AI widget **must** lazy-load (not in critical rendering path)
 - Bundle contribution: < 50KB gzipped
 - Fallback: static CTA form when AI service is unavailable
-- Loading state: skeleton placeholder, no layout shift
+- Loading state: skeleton placeholder, no layout shift (CLS = 0)
 - Error state: graceful degradation to contact form
 
-### 8.3 Data Rules
-- No PII sent to third-party AI services without explicit consent
+### 19.3 Data rules
+
+- No PII sent to third-party AI services without explicit user consent
 - All AI interactions logged server-side for audit
-- Widget must respect user's "Do Not Track" preference
-```
+- Widget must respect "Do Not Track" browser setting
 
 ---
 
-### §9. CHANGE MANAGEMENT — 🔴 Critically Weak
+## 20. PERFORMANCE BUDGET
 
-Three lines for change management on a production project.
+### 20.1 Page load
 
-**Gaps:**
+| Metric | Budget |
+|--------|--------|
+| Total JS (first load, gzipped) | < 150KB |
+| Total CSS (gzipped) | < 30KB |
+| Largest image per page | < 500KB |
+| Hero video (if applicable) | < 5MB, lazy-loaded |
+| Time to Interactive | < 3.5s on 4G |
+| LCP | < 2.5s |
 
-| # | Missing | Risk |
-|---|---------|------|
-| 1 | No branching strategy | Direct pushes to main? |
-| 2 | No PR review requirements | Who approves? How many reviewers? |
-| 3 | No deployment process | How does code reach production? |
-| 4 | No rollback procedure | What if a deploy breaks production? |
-| 5 | No environment definitions | dev / staging / production? |
-| 6 | No version strategy for the site | How are releases tracked? |
-| 7 | "No silent refactors" — undefined | What constitutes "silent"? |
+### 20.2 Image rules
 
-**Recommendation — expand §9:**
-```markdown
-## 9. CHANGE MANAGEMENT
+- Format: WebP preferred, JPEG fallback
+- Serve via `next/image` with width/height defined
+- Max dimensions: 1920px wide for hero, 800px for content
+- Thumbnails: max 200KB
+- All images in `/public/images/{category}/`
+- Naming: `kebab-case.webp`
 
-### 9.1 Branching Strategy
-- main: production-ready, protected
-- develop: integration branch
-- feat/*, fix/*, docs/*: working branches
-- No direct commits to main or develop
+### 20.3 Third-party scripts
 
-### 9.2 Pull Request Rules
+- Max 2 third-party scripts (analytics + AI widget)
+- All loaded `afterInteractive` or `lazyOnload`
+- No render-blocking external resources
+
+---
+
+## 21. DESIGN SYSTEM REFERENCE
+
+The design system is fully defined in `05_DESIGN_SYSTEM/`. Below is a quick reference.
+
+### 21.1 Brand colors
+
+| Token | Hex | Usage |
+|-------|-----|-------|
+| `primary-500` | `#00B4D8` | Main brand (turquoise) |
+| `ocean-500` | `#0077B6` | Secondary (ocean blue) |
+| `accent-500` | `#FF9E1B` | CTAs, highlights (orange) |
+| `dark-500` | `#023047` | Text, dark backgrounds |
+| `light-200` | `#F0F9FF` | Light backgrounds |
+
+### 21.2 Core UI components
+
+| Component | Import | Variants |
+|-----------|--------|----------|
+| Button | `@/components/ui/Button` | default, secondary, outline |
+| Badge | `@/components/ui/Badge` | default, accent, success |
+| Card | `@/components/ui/Card` | — |
+| Input | `@/components/ui/Input` | with error state |
+
+Full specifications in `05_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md`.
+
+---
+
+## 22. DEPENDENCY MANAGEMENT
+
+### 22.1 Rules
+
+- All dependencies must be in `package.json` — no global installs in production
+- `pnpm-lock.yaml` is committed and must not be manually edited
+- No dependency added without verifying: license compatibility, maintenance status, bundle size impact
+- Security audit: `pnpm audit` run in CI — zero critical/high vulnerabilities allowed
+
+### 22.2 Update policy
+
+- Patch updates: applied without approval
+- Minor updates: applied with testing
+- Major updates: require addendum to this document if the package is listed in §3
+
+---
+
+## 23. CHANGE MANAGEMENT
+
+### 23.1 Branching strategy
+
+| Branch | Purpose | Protection |
+|--------|---------|-----------|
+| `main` | Production-ready code | Protected: no direct commits |
+| `develop` | Integration branch | Protected: no direct commits |
+| `feat/*` | Feature development | — |
+| `fix/*` | Bug fixes | — |
+| `docs/*` | Documentation changes | — |
+
+### 23.2 Pull request rules
+
 - Every change requires a PR
-- PR must reference the spec section it relates to
-- Structural changes require MASTER_SPEC update in the same PR
+- PR title follows Conventional Commits format
+- Structural changes require MASTER_SPEC update **in the same PR**
 - Minimum 1 reviewer approval before merge
+- CI must pass (lint, type-check, tests) before merge
 
-### 9.3 Deployment
-- Production deploys from main only
-- Staging auto-deploys from develop
-- Rollback: revert merge commit on main
+### 23.3 Deployment
 
-### 9.4 Document Changes
-- Any change to /docs/00_GOVERNANCE requires owner approval
-- All spec changes tracked in CHANGELOG section of this document
-- Deprecated documents moved to 99_ARCHIVE with SUPERSEDED header
-```
+| Environment | Source | Trigger |
+|-------------|--------|---------|
+| Production | `main` | Manual deploy after PR merge |
+| Staging | `develop` | Auto-deploy on merge |
+| Preview | `feat/*` | Auto-deploy per PR (Vercel preview) |
 
----
+### 23.4 Rollback
 
-### §10. FORBIDDEN — ✅ Good
-
-Clear, concise. No changes needed. Could be extended with:
-
-```markdown
-❌ Direct commits to main branch
-❌ Dependencies without explicit approval in MASTER_SPEC
-❌ Inline styles (Tailwind only)
-❌ Console.log in production code
-❌ Hardcoded Russian text in components (must come from content source)
-❌ Images > 500KB
-❌ Any npm package not in approved list
-```
+- Revert the merge commit on `main`
+- Database rollback: `pnpm prisma migrate reset` only on staging; production requires manual migration revert
 
 ---
 
-### §11. FINAL RULE — ✅ Perfect
+## 24. FORBIDDEN
 
-No changes. This is the correct "escape hatch."
-
----
-
-## MISSING SECTIONS (Critical)
-
-The following sections are **entirely absent** from the MASTER_SPEC and are required for a production Next.js project:
-
-| # | Missing Section | Priority | Rationale |
-|---|----------------|----------|-----------|
-| 1 | **§12. /src STRUCTURE CANON** | 🔴 Critical | MASTER_SPEC governs /docs but says NOTHING about the actual code structure. SKILL.md defines `/src/app`, `/src/components`, `/src/lib` — but the spec doesn't acknowledge it. |
-| 2 | **§13. COMPONENT ARCHITECTURE** | 🔴 Critical | No rules for Server vs Client components, no composition patterns, no prop conventions |
-| 3 | **§14. API ROUTES** | 🔴 Critical | SKILL.md shows `/api/leads`, `/api/quiz`, `/api/upload` — MASTER_SPEC doesn't mention API layer at all |
-| 4 | **§15. DATABASE SCHEMA GOVERNANCE** | 🟡 High | Prisma schema exists in SKILL.md but has no canonical home or change rules |
-| 5 | **§16. ENVIRONMENT VARIABLES** | 🟡 High | No `.env` schema, no required vars list, no secrets management |
-| 6 | **§17. TESTING STRATEGY** | 🟡 High | Zero mention of testing |
-| 7 | **§18. PERFORMANCE BUDGET** | 🟡 High | No performance requirements |
-| 8 | **§19. SEO REQUIREMENTS** | 🟡 High | Critical for a commercial site |
-| 9 | **§20. SECURITY** | 🟡 High | No CORS, CSP, rate limiting, input sanitization rules |
-| 10 | **§21. ACCESSIBILITY** | 🟡 High | No WCAG target, no a11y rules |
-| 11 | **§22. ERROR HANDLING** | 🟠 Medium | No error boundary strategy, no logging |
-| 12 | **§23. ANALYTICS & TRACKING** | 🟠 Medium | SKILL.md mentions events but spec is silent |
-| 13 | **§24. DESIGN SYSTEM / VISUAL CANON** | 🟠 Medium | Colors exist in SKILL.md but not in spec |
-| 14 | **§25. DEPENDENCY MANAGEMENT** | 🟠 Medium | No approved package list, no audit rules |
+- ❌ Files outside canonical folders in `/docs`
+- ❌ New directories in `src/` without addendum
+- ❌ Duplicate or overlapping canon documents
+- ❌ Undocumented dependencies
+- ❌ Inline styles (Tailwind only)
+- ❌ `console.log` in production code
+- ❌ Images > 500KB
+- ❌ Silent refactors (no PR, no description)
+- ❌ Direct commits to `main` or `develop`
+- ❌ Raw SQL without parameterized queries
+- ❌ `dangerouslySetInnerHTML` without sanitization
+- ❌ Hardcoded Russian text in React components (must come from content MD)
+- ❌ API routes without Zod validation
+- ❌ Deployment without passing CI
+- ❌ npm or yarn (pnpm only)
 
 ---
 
-## CROSS-REFERENCE: MASTER_SPEC vs SKILL.md CONTRADICTIONS
+## 25. DOCUMENT REGISTRY
 
-| Item | MASTER_SPEC | SKILL.md | Resolution needed |
-|------|-------------|----------|-------------------|
-| Next.js version | "13+" | "14" | Pin to 14 in spec |
-| Database | Not mentioned | PostgreSQL + Prisma 7.2 | Add to spec |
-| Forms | Not mentioned | react-hook-form + Zod | Add to spec |
-| Icons | Not mentioned | Lucide React | Add to spec |
-| Storage | Not mentioned | AWS S3 / Yandex Cloud | Add to spec |
-| Brand colors | Not mentioned | 5-color palette defined | Add to spec or reference design system doc |
-| Homepage sections | Not mentioned | 9 sections defined with order | Add to content canon |
-| Analytics events | Not mentioned | 4 events defined | Add to spec |
-| UI language | "English only" (ambiguous) | "Russian UI" | Clarify in spec |
-| /src structure | Not defined | Fully defined | Add to spec |
+All canonical documents that **must exist** for the project to be considered fully specified:
 
----
+| Path | Status | Owner |
+|------|--------|-------|
+| `00_GOVERNANCE/INDAI_MASTER_SPEC.md` | ✅ Active | Project owner |
+| `00_GOVERNANCE/INDAI_PROJECT_STATUS.md` | Required | Project owner |
+| `00_GOVERNANCE/AUDIT_REPORT.md` | Required | Project owner |
+| `00_GOVERNANCE/INDAI_CHANGELOG.md` | Required | Project owner |
+| `01_BRAND/INDAI_HERO_COPY_CANON.md` | Required | Brand |
+| `01_BRAND/INDAI_HERO_DESIGN_CONCEPT_CANON.md` | Required | Brand |
+| `01_BRAND/INDAI_HERO_VIDEO_CANON.md` | Required | Brand |
+| `01_BRAND/INDAI_TONE_OF_VOICE_CANON.md` | Required | Brand |
+| `02_CONTENT_SERVICES/INDAI_SERVICES_PAGES_CANON.md` | Required | Content |
+| `03_PRODUCTS/INDAI_PRODUCT_COPY.md` | Required | Product |
+| `03_PRODUCTS/INDAI_AI_WIDGET_PLACEMENT_CANON.md` | Required | Product |
+| `04_INFRASTRUCTURE/INDAI_DEPLOYMENT_CANON.md` | Required | Infra |
+| `04_INFRASTRUCTURE/INDAI_ENV_VARS_CANON.md` | Required | Infra |
+| `04_INFRASTRUCTURE/INDAI_DATABASE_CANON.md` | Required | Infra |
+| `05_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md` | Required | Design |
+| `05_DESIGN_SYSTEM/INDAI_TYPOGRAPHY_CANON.md` | Required | Design |
+| `05_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md` | Required | Design |
 
-## MATURITY MODEL
-
-| Level | Description | Current status |
-|-------|-------------|----------------|
-| L1 — Intent | Document states goals and principles | ✅ Achieved |
-| L2 — Structure | Document defines file/folder organization | ✅ Achieved |
-| L3 — Technical | Document defines enforceable technical rules | ❌ Not achieved |
-| L4 — Measurable | Document contains verifiable acceptance criteria | ❌ Not achieved |
-| L5 — Automated | Document rules enforced by CI/CD | ❌ Not achieved |
-
-**Current level: L2 (Structure)**
-**Target level: L4 (Measurable) minimum for production**
+Documents marked "Required" must be created before production launch.
 
 ---
 
-## RECOMMENDED ACTION PLAN
+## 26. FINAL RULE
 
-### Phase 1 — Fix contradictions (URGENT)
-1. Resolve MASTER_SPEC vs SKILL.md version conflict
-2. Add database/ORM to technology stack
-3. Clarify language policy (EN code / RU content)
-
-### Phase 2 — Add critical missing sections
-4. Add §12: /src structure canon
-5. Add §13: Component architecture rules
-6. Add §14: API routes governance
-7. Add §16: Environment variables schema
-
-### Phase 3 — Engineering hardening
-8. Add §17: Testing strategy
-9. Add §18: Performance budget
-10. Add §19: SEO requirements
-11. Add §20: Security rules
-12. Expand §9: Full change management with branching/PR/deploy
-
-### Phase 4 — Automation
-13. Create ESLint rules that enforce naming conventions
-14. Create CI checks for spec compliance
-15. Add pre-commit hooks for formatting
-
----
-
-*End of audit.*INDAI — MASTER SPECIFICATION (CANONICAL)
-
-Project: INDAI Clean Website
-Repository Type: Frontend (Next.js)
-Document Role: Single Source of Truth
-Status: CANONICAL — OVERRIDES ALL
-Last Updated: 2026-02-05
-
-1. PURPOSE
-
-This document is the only authoritative specification for the INDAI Clean website.
-
-Any file, folder, documentation, content, or code that contradicts this document
-must be changed to comply with it.
-
-There are no exceptions.
-
-2. CORE GOALS
-
-Maintain a clean, scalable, non-chaotic repository
-
-Enforce strict separation of concerns:
-
-governance
-
-brand
-
-content & services
-
-products
-
-archive
-
-Enable AI-assisted development without losing control
-
-Eliminate duplication, ambiguity, and undocumented decisions
-
-3. FIXED TECHNOLOGY STACK
-
-Framework: Next.js 13+ (App Router)
-
-Language: TypeScript (strict)
-
-Styling: Tailwind CSS
-
-Architecture: Component-based
-
-Content source: Markdown (.md)
-
-Repository language: English only (paths, files, code)
-
-4. CANONICAL /docs STRUCTURE
-/docs
-├── 00_GOVERNANCE            # Control, rules, audits (SOURCE OF TRUTH)
-│   ├── INDAI_MASTER_SPEC.md
-│   ├── INDAI_PROJECT_STATUS.md
-│   ├── AUDIT_REPORT.md
-│   └── .keep
-│
-├── 01_BRAND                 # Brand, tone, voice, visual canon
-│   ├── INDAI_HERO_COPY_CANON.md
-│   ├── INDAI_HERO_DESIGN_CONCEPT_CANON.md
-│   ├── INDAI_HERO_VIDEO_CANON.md
-│   └── .keep
-│
-├── 02_CONTENT_SERVICES      # Service content & pages
-│   ├── INDAI_SERVICES_PAGES_CANON.md
-│   ├── heat_exchanger_cleaning.md
-│   ├── pipe_cleaning.md
-│   └── .keep
-│
-├── 03_PRODUCTS              # Product logic, AI, UX rules
-│   ├── INDAI_PRODUCT_COPY.md
-│   ├── INDAI_AI_WIDGET_PLACEMENT_CANON.md
-│   └── .keep
-│
-└── 99_ARCHIVE               # Deprecated / historical documents
-    └── .keep
-
-⚠️ STRICT RULE
-
-Files must NOT exist directly in /docs.
-Everything belongs inside a numbered category.
-
-5. HIERARCHY OF TRUTH
-
-INDAI_MASTER_SPEC.md (this file)
-
-Other documents in 00_GOVERNANCE
-
-Canonical brand & product documents
-
-Content & service files
-
-Code implementation
-
-Code never overrides documentation.
-
-6. NAMING RULES (NON-NEGOTIABLE)
-Folders
-
-Format: NN_CATEGORY_NAME
-
-English only
-
-Uppercase
-
-Numbers define priority & order
-
-Files
-
-Format: UPPER_SNAKE_CASE.md
-
-English only
-
-No duplicates
-
-No vague names (final, new, test, copy2)
-
-7. CONTENT RULES
-
-Content lives only in:
-
-01_BRAND
-
-02_CONTENT_SERVICES
-
-Markdown is the source of truth
-
-Pages are generated from MD
-
-No business content logic inside React components
-
-8. AI & AUTOMATION RULES
-
-AI widgets must follow:
-
-INDAI_AI_WIDGET_PLACEMENT_CANON.md
-
-AI must:
-
-assist, not dominate
-
-never block content
-
-never override user intent
-
-UX > AI visibility
-
-9. CHANGE MANAGEMENT
-
-Any structural change requires:
-
-Update to this document
-
-Clear commit message explaining why
-
-No silent refactors
-
-10. FORBIDDEN
-
-❌ Duplicate folders
-❌ Files outside categories
-❌ Mixed governance & content
-❌ Undocumented decisions
-❌ Contradictions with this spec
-
-11. FINAL RULE
-
-If you are unsure where something belongs —
-it goes into 00_GOVERNANCE until decided.
+If you are unsure where something belongs —  
+it goes into `00_GOVERNANCE/` until a canonical decision is made.
 
 This document is law.
