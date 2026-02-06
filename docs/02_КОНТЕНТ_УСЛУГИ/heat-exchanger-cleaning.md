@@ -10,6 +10,14 @@ og_image: "/images/og/heat-exchanger.jpg"
 status: "draft"
 created: "2026-02-02"
 updated: "2026-02-07"
+cta_primary:
+  text: "Записаться на тест-очистку"
+  cta_id: "test-cleaning"
+  form_id: "F1"
+cta_secondary:
+  text: "Получить инженерный расчёт"
+  cta_id: "engineering-estimate"
+  form_id: "F2"
 ---
 
 # Промывка теплообменников
@@ -107,7 +115,12 @@ INDAI проводит бесплатную тест-очистку на уча�
 
 ## Следующий шаг
 
-<!-- CTA priority: primary → test cleaning, secondary → engineering estimate -->
+<!--
+  CTA contract: text, cta_id, form_id are defined in frontmatter (cta_primary / cta_secondary).
+  Component MUST read CTA from frontmatter — no hardcoded text in React (§10.1).
+  Analytics: click_cta { cta_id, section: slug }, submit_form { form_id, source: slug } (§18.2).
+  Button variants: primary → default (accent-500), secondary → secondary (ocean-500) (§21.2).
+-->
 
 → **Записаться на тест-очистку** *(primary CTA)*
 
