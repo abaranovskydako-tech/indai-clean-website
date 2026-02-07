@@ -131,39 +131,33 @@ Any package not listed here requires explicit approval via addendum to this docu
 
 ```
 /docs
-├── 00_GOVERNANCE/
-│   ├── INDAI_MASTER_SPEC.md            # This file — top-level law
-│   ├── INDAI_PROJECT_STATUS.md         # Current project state
-│   ├── AUDIT_REPORT.md                 # Contradiction & audit log
-│   └── INDAI_CHANGELOG.md             # Cross-project changelog
+├─ 00_УПРАВЛЕНИЕ/
+│  ├─ INDAI_MASTER_SPEC.md        # Закон верхнего уровня
+│  ├─ INDAI_PROJECT_STATUS.md     # Текущее состояние проекта
+│  ├─ AUDIT_REPORT.md             # Журнал противоречий и аудита
+│  ├─ INDAI_CHANGELOG.md          # Журнал изменений
+│  ├─ 00_CORE/
+│  ├─ 01_АРХИТЕКТУРА/
+│  ├─ 02_CONTENT_CANON/
+│  ├─ 03_DESIGN_SYSTEM/
+│  └─ 04_LEAD_SYSTEM/
 │
-├── 01_BRAND/
-│   ├── INDAI_HERO_COPY_CANON.md       # Hero block: text & messaging
-│   ├── INDAI_HERO_DESIGN_CONCEPT_CANON.md  # Hero block: visual design rules
-│   ├── INDAI_HERO_VIDEO_CANON.md      # Hero block: video requirements
-│   └── INDAI_TONE_OF_VOICE_CANON.md   # Brand voice & tone rules
+├─ 01_БРЕНД/
+│  ├─ INDAI_HERO_COPY_CANON.md
+│  ├─ INDAI_HERO_DESIGN_CONCEPT_CANON.md
+│  ├─ INDAI_HERO_VIDEO_CANON.md
+│  └─ INDAI_TONE_OF_VOICE_CANON.md
 │
-├── 02_CONTENT_SERVICES/
-│   ├── INDAI_SERVICES_PAGES_CANON.md  # Service page structure & rules
-│   └── content/                        # Service content source files
-│       ├── heat_exchanger_cleaning.md
-│       └── pipe_cleaning.md
+├─ 02_КОНТЕНТ_УСЛУГИ/
+│  ├─ heat_exchanger_cleaning.md
+│  ├─ pipe_cleaning.md
+│  ├─ boiler_cleaning.md
+│  ├─ tank_cleaning.md
+│  ├─ chemical_cleaning.md
+│  └─ hydrodynamic_cleaning.md
 │
-├── 03_PRODUCTS/
-│   ├── INDAI_PRODUCT_COPY.md          # Product messaging
-│   └── INDAI_AI_WIDGET_PLACEMENT_CANON.md  # AI widget behavior & placement
-│
-├── 04_INFRASTRUCTURE/
-│   ├── INDAI_DEPLOYMENT_CANON.md      # Hosting, CI/CD, environments
-│   ├── INDAI_ENV_VARS_CANON.md        # Environment variables registry
-│   └── INDAI_DATABASE_CANON.md        # Schema governance, migrations
-│
-├── 05_DESIGN_SYSTEM/
-│   ├── INDAI_COLOR_PALETTE_CANON.md   # Brand colors, usage rules
-│   ├── INDAI_TYPOGRAPHY_CANON.md      # Fonts, sizes, hierarchy
-│   └── INDAI_COMPONENT_LIBRARY_CANON.md  # UI components registry
-│
-└── 99_ARCHIVE/                         # Deprecated / historical only
+└─ 99_АРХИВ/                      # Устаревшие документы (только для истории)
+               # Deprecated / historical only
 ```
 
 ### Rules
