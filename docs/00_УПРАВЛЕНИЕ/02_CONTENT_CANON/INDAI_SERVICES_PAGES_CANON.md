@@ -1,17 +1,5 @@
-Отлично, делаем правильно 👍
-Ниже — **полностью корректная Markdown-версия документа `INDAI_SERVICES_PAGES_CANON.md`**, уже **нормализованная под GitHub**:
 
-* все заголовки начинаются с новой строки
-* разделители `---` стоят корректно
-* таблицы валидные
-* кодовые блоки оформлены
-* никаких «слипшихся» строк
-* можно **просто скопировать и вставить целиком в файл**
-
----
-
-````md
-# INDAI_SERVICES_PAGES_CANON.md
+# INDAI_SERVICES_PAGES_CANON
 
 **Project:** INDAI Clean  
 **Document role:** Canonical structure and rules for service pages  
@@ -223,19 +211,6 @@ The following documents are archived in `99_ARCHIVE/`:
 ---
 
 **Document approved.**
-All INDAI Clean service pages operate exclusively within these constraints.
 
-```
 
----
 
-## Что дальше
-
-Если хочешь, следующим шагом можем:
-
-1. 🔍 Прогнать **любой сервисный файл** по этому канону и QA-чеклисту  
-2. 🧱 Зафиксировать **финальную структуру папок** (чтобы больше не было вопросов «куда класть»)  
-3. 🧪 Проверить, что **chemical-cleaning.md** и **heat-exchanger-cleaning.md** полностью соответствуют v3.0.0  
-
-Скажи, что делаем дальше.
-```
