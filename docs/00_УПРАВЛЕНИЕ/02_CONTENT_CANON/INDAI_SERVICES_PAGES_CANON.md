@@ -120,6 +120,24 @@ Every service page body **must** contain exactly these sections in this order.
 Changing order or removing sections is forbidden.
 
 ---
+## Service Page Model Decision
+
+The INDAI Clean website adopts a **six service pages model** as the primary, client-facing structure.
+
+Each service page is defined by a **real-world client entry point** (object or method), reflecting how industrial clients naturally formulate problems and search for solutions.
+
+The previously defined **engineering task classification** (e.g. cleaning classes, process categories) is preserved and used:
+- internally within service page content,
+- in workflow descriptions,
+- in lead qualification and back-office logic,
+- in analytics and reporting.
+
+This approach ensures:
+- clarity and accessibility for first-time and non-expert visitors,
+- strong SEO and demand capture,
+- preservation of engineering rigor without exposing unnecessary abstraction to the client.
+
+Engineering classification **does not define URLs or top-level navigation**, but remains a foundational internal model.
 
 ## 6. OPTIONAL SECTION
 
