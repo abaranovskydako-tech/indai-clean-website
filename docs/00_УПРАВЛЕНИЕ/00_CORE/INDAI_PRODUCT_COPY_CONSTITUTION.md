@@ -131,7 +131,7 @@ Forbidden:
 
 - All page content sourced from Markdown files
 - React components **must not** contain hardcoded service text
-- Service copy lives only in `02_CONTENT_SERVICES/content/`
+- Service copy lives only in `02_КОНТЕНТ_УСЛУГИ/`
 - Brand copy lives only in `01_BRAND/`
 
 ---
@@ -151,7 +151,7 @@ Each service page must contain these content sections:
 
 ### Frontmatter requirement (per MASTER_SPEC §10.2)
 
-Every service content file in `02_CONTENT_SERVICES/content/` **must** include the mandatory frontmatter schema defined in MASTER_SPEC §10.2. Files missing required fields **must not** be deployed.
+Every service content file in `02_КОНТЕНТ_УСЛУГИ/` **must** include the mandatory frontmatter schema defined in MASTER_SPEC §10.2. Files missing required fields **must not** be deployed.
 
 ---
 

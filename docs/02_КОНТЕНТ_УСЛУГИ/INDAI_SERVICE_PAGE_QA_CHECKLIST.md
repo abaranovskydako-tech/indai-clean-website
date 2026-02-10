@@ -2,7 +2,7 @@
 
 Project: INDAI Clean  
 Document role: QA validation checklist for service page content  
-Path: `02_CONTENT_SERVICES/INDAI_SERVICE_PAGE_QA_CHECKLIST.md`  
+Path: `02_КОНТЕНТ_УСЛУГИ/INDAI_SERVICE_PAGE_QA_CHECKLIST.md`  
 Status: CANONICAL — ACTIVE  
 Document-ID: INDAI-CONTENT-002  
 Version: 1.0.0  
@@ -22,7 +22,7 @@ Supersedes: `INDAI_SERVICE_PAGE_COPY_TEMPLATE.md` v1.0 (moved to `99_ARCHIVE/`)
 
 ## 1. PURPOSE
 
-This document is a **QA validation checklist** for service page content files in `02_CONTENT_SERVICES/content/`.
+This document is a **QA validation checklist** for service page content files in `02_КОНТЕНТ_УСЛУГИ/`.
 
 It is **not** a generation template. Content is generated using the approved reference pages as structural templates (see §2).
 

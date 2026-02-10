@@ -7,7 +7,7 @@ seo_title: "Промывка теплообменников | INDAI Clean"
 seo_description: "Инженерная промывка теплообменников с бесплатной тест-очисткой. Результат до оплаты. Пластинчатые, кожухотрубные, спиральные."
 hero_image: "/images/services/heat-exchanger.webp"
 og_image: "/images/og/heat-exchanger.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-02"
 updated: "2026-02-07"
 cta_primary:

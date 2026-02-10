@@ -7,7 +7,7 @@ seo_title: "Очистка резервуаров и ёмкостей | INDAI Cl
 seo_description: "Инженерная очистка резервуаров и ёмкостей с бесплатной тест-очисткой. Нефтяные, водяные, технологические. Результат до оплаты."
 hero_image: "/images/services/tank-cleaning.webp"
 og_image: "/images/og/tank-cleaning.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-07"
 updated: "2026-02-07"
 cta_primary:
