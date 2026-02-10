@@ -1,28 +1,25 @@
 import { getAllServices } from '@/lib/services';
+import { SECTION_HEADINGS } from '@/lib/constants';
 import Link from 'next/link';
-import type { Metadata } from 'next';
-import { PAGE_METADATA, SECTION_HEADINGS } from '@/lib/constants';
-
-export const metadata: Metadata = {
-  title: PAGE_METADATA.servicesPage.title,
-  description: PAGE_METADATA.servicesPage.description,
-};
 
 /**
- * Services Index Page
+ * ServicesSection component
+ * 
+ * Per Component Library Canon v1.0.0
+ * Location: components/sections/ServicesSection.tsx
  * 
  * Applies Design System tokens:
  * - Typography from Typography Canon v1.0.0
  * - Colors from Color Palette Canon v1.0.0
  */
-export default function ServicesPage() {
+export default function ServicesSection() {
   const services = getAllServices();
 
   return (
-    <div className="container mx-auto px-4 py-8">
-      <h1 className="text-4xl font-bold leading-tight tracking-tight text-dark-500 mb-6">
+    <section className="container mx-auto px-4 py-8">
+      <h2 className="text-3xl font-semibold leading-snug text-dark-500 mb-6">
         {SECTION_HEADINGS.services}
-      </h1>
+      </h2>
       <ul className="space-y-2">
         {services.map((service) => (
           <li key={service.slug}>
@@ -35,6 +32,7 @@ export default function ServicesPage() {
           </li>
         ))}
       </ul>
-    </div>
+    </section>
   );
 }
+
