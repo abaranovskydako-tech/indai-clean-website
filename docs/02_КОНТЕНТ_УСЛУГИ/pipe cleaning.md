@@ -7,7 +7,7 @@ seo_title: "Чистка труб и трубопроводов | INDAI Clean"
 seo_description: "Инженерная очистка трубопроводов с бесплатной тест-очисткой. Гидродинамические и механические методы. Результат до оплаты."
 hero_image: "/images/services/pipe-cleaning.webp"
 og_image: "/images/og/pipe-cleaning.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-02"
 updated: "2026-02-07"
 cta_primary:

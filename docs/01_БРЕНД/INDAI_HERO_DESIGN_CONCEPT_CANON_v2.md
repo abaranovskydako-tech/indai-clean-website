@@ -88,7 +88,7 @@ Forbidden:
 
 - Strict alignment
 - Clear typographic hierarchy
-- Typography per `05_DESIGN_SYSTEM/INDAI_TYPOGRAPHY_CANON.md`
+- Typography per `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_TYPOGRAPHY_CANON.md`
 
 ### Forbidden
 
@@ -134,7 +134,7 @@ The HERO design must:
 Principle:  
 **Neutral and strict is better than bright and memorable.**
 
-Color values and usage rules are defined in `05_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md`.  
+Color values and usage rules are defined in `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md`.  
 Quick reference (from MASTER_SPEC §21.1):
 
 | Token | Hex | Typical HERO usage |

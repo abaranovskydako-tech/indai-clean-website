@@ -163,7 +163,7 @@ Any package not listed here requires explicit approval via addendum to this docu
 ### Rules
 
 - No files may exist directly in `/docs` root
-- Maximum nesting depth: 2 levels from `/docs` (e.g. `02_CONTENT_SERVICES/content/file.md`)
+- Maximum nesting depth: 2 levels from `/docs` (e.g. `02_КОНТЕНТ_УСЛУГИ/file.md`)
 - Canon documents: `UPPER_SNAKE_CASE.md`
 - Content source files (in `content/` subdirectories): `lower_snake_case.md` allowed
 - Any single file exceeding 500 lines **must** be split into sub-documents  
@@ -172,43 +172,44 @@ Any package not listed here requires explicit approval via addendum to this docu
 
 ---
 
-## 6. CANONICAL `/src` STRUCTURE
+## 6. CANONICAL PROJECT STRUCTURE
+
+**Note:** Per ADDENDUM P0.1, there is NO `src/` directory. All paths are root-level.
 
 ```
-src/
-├── app/
-│   ├── layout.tsx                # Root layout (SEO, fonts, global providers)
-│   ├── page.tsx                  # Homepage
-│   ├── not-found.tsx             # Custom 404
-│   ├── error.tsx                 # Global error boundary
-│   ├── globals.css               # Tailwind base + custom properties
-│   ├── (routes)/                 # Grouped route segments
-│   │   └── services/
-│   │       └── [slug]/
-│   │           └── page.tsx
-│   └── api/
-│       ├── leads/route.ts        # Form submissions
-│       ├── quiz/route.ts         # Quiz calculator
-│       └── upload/route.ts       # S3 file upload
-│
-├── components/
-│   ├── layout/                   # Header, Footer, Navigation
-│   ├── sections/                 # Page sections (HeroSection, ServicesSection, etc.)
-│   └── ui/                       # Atomic UI: Button, Card, Input, Badge
-│
-├── lib/
-│   ├── prisma.ts                 # Prisma client singleton — sole import point
-│   ├── s3.ts                     # File upload utilities
-│   ├── utils.ts                  # Helpers (cn(), formatPrice, etc.)
-│   └── constants.ts              # App-wide constants
-│
-└── types/
-    └── index.ts                  # Shared TypeScript types & interfaces
+app/
+├── layout.tsx                # Root layout (SEO, fonts, global providers)
+├── page.tsx                  # Homepage
+├── not-found.tsx             # Custom 404
+├── error.tsx                 # Global error boundary
+├── globals.css               # Tailwind base + custom properties
+├── (routes)/                 # Grouped route segments
+│   └── services/
+│       └── [slug]/
+│           └── page.tsx
+└── api/
+    ├── leads/route.ts        # Form submissions
+    ├── quiz/route.ts         # Quiz calculator
+    └── upload/route.ts       # S3 file upload
+
+components/
+├── layout/                   # Header, Footer, Navigation
+├── sections/                 # Page sections (HeroSection, ServicesSection, etc.)
+└── ui/                       # Atomic UI: Button, Card, Input, Badge
+
+lib/
+├── prisma.ts                 # Prisma client singleton — sole import point
+├── s3.ts                     # File upload utilities
+├── utils.ts                  # Helpers (cn(), formatPrice, etc.)
+└── constants.ts              # App-wide constants
+
+types/
+└── index.ts                  # Shared TypeScript types & interfaces
 ```
 
 ### Rules
 
-- **No new top-level directories** inside `src/` without addendum to this spec
+- **No new top-level directories** without addendum to this spec
 - Components with `useState`/`useEffect` **must** have `'use client'` directive
 - Server Components are the default — only add `'use client'` when required
 - Prisma client: import only from `@/lib/prisma`, never instantiate directly
@@ -224,8 +225,8 @@ src/
 1. **INDAI_MASTER_SPEC.md** (this file)
 2. Other documents in `00_GOVERNANCE/`
 3. Canonical brand & product documents (`01_BRAND/`, `03_PRODUCTS/`)
-4. Infrastructure & design system canons (`04_INFRASTRUCTURE/`, `05_DESIGN_SYSTEM/`)
-5. Content & service files (`02_CONTENT_SERVICES/`)
+4. Infrastructure & design system canons (`04_INFRASTRUCTURE/`, `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/`)
+5. Content & service files (`02_КОНТЕНТ_УСЛУГИ/`)
 6. Code implementation
 
 **Code never overrides documentation.**
@@ -284,11 +285,11 @@ When a contradiction is discovered:
 
 - Markdown is the source of truth for all page content
 - React components **must not** contain hardcoded service text or copy
-- Content lives only in `01_BRAND/` and `02_CONTENT_SERVICES/`
+- Content lives only in `01_БРЕНД/` and `02_КОНТЕНТ_УСЛУГИ/`
 
 ### 10.2 Service page frontmatter schema (mandatory)
 
-Every service content file in `02_CONTENT_SERVICES/content/` **must** include:
+Every service content file in `02_КОНТЕНТ_УСЛУГИ/` **must** include:
 
 ```yaml
 ---
@@ -499,9 +500,9 @@ Every page **must** have:
 
 | File | Purpose |
 |------|---------|
-| `src/app/not-found.tsx` | Custom 404 page |
-| `src/app/error.tsx` | Global error boundary |
-| `src/app/loading.tsx` | Global loading state (optional) |
+| `app/not-found.tsx` | Custom 404 page |
+| `app/error.tsx` | Global error boundary |
+| `app/loading.tsx` | Global loading state (optional) |
 
 - Error boundary catches rendering errors and shows user-friendly message
 - 404 page offers navigation back to homepage and services
@@ -603,7 +604,7 @@ New events require addendum to this document.
 
 ## 21. DESIGN SYSTEM REFERENCE
 
-The design system is fully defined in `05_DESIGN_SYSTEM/`. Below is a quick reference.
+The design system is fully defined in `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/`. Below is a quick reference.
 
 ### 21.1 Brand colors
 
@@ -624,7 +625,7 @@ The design system is fully defined in `05_DESIGN_SYSTEM/`. Below is a quick refe
 | Card | `@/components/ui/Card` | — |
 | Input | `@/components/ui/Input` | with error state |
 
-Full specifications in `05_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md`.
+Full specifications in `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md`.
 
 ---
 
@@ -683,7 +684,7 @@ Full specifications in `05_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md`.
 ## 24. FORBIDDEN
 
 - ❌ Files outside canonical folders in `/docs`
-- ❌ New directories in `src/` without addendum
+- ❌ New top-level directories without addendum
 - ❌ Duplicate or overlapping canon documents
 - ❌ Undocumented dependencies
 - ❌ Inline styles (Tailwind only)
@@ -714,15 +715,15 @@ All canonical documents that **must exist** for the project to be considered ful
 | `01_BRAND/INDAI_HERO_DESIGN_CONCEPT_CANON.md` | Required | Brand |
 | `01_BRAND/INDAI_HERO_VIDEO_CANON.md` | Required | Brand |
 | `01_BRAND/INDAI_TONE_OF_VOICE_CANON.md` | Required | Brand |
-| `02_CONTENT_SERVICES/INDAI_SERVICES_PAGES_CANON.md` | Required | Content |
+| `02_КОНТЕНТ_УСЛУГИ/INDAI_SERVICES_PAGES_CANON.md` | Required | Content |
 | `03_PRODUCTS/INDAI_PRODUCT_COPY.md` | Required | Product |
 | `03_PRODUCTS/INDAI_AI_WIDGET_PLACEMENT_CANON.md` | Required | Product |
 | `04_INFRASTRUCTURE/INDAI_DEPLOYMENT_CANON.md` | Required | Infra |
 | `04_INFRASTRUCTURE/INDAI_ENV_VARS_CANON.md` | Required | Infra |
 | `04_INFRASTRUCTURE/INDAI_DATABASE_CANON.md` | Required | Infra |
-| `05_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md` | Required | Design |
-| `05_DESIGN_SYSTEM/INDAI_TYPOGRAPHY_CANON.md` | Required | Design |
-| `05_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md` | Required | Design |
+| `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md` | Required | Design |
+| `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_TYPOGRAPHY_CANON.md` | Required | Design |
+| `00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_COMPONENT_LIBRARY_CANON.md` | Required | Design |
 
 Documents marked "Required" must be created before production launch.
 

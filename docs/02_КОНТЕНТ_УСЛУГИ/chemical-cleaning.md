@@ -7,7 +7,7 @@ seo_title: "Химическая очистка оборудования | INDAI
 seo_description: "Химическая очистка промышленного оборудования с бесплатной тест-очисткой. Подбор состава под тип загрязнения. Результат до оплаты."
 hero_image: "/images/services/chemical-cleaning.webp"
 og_image: "/images/og/chemical-cleaning.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-07"
 updated: "2026-02-07"
 cta_primary:

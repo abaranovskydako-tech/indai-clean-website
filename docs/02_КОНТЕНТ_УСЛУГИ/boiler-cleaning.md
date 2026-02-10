@@ -7,7 +7,7 @@ seo_title: "Промывка котлов | INDAI Clean"
 seo_description: "Инженерная промывка котлов с бесплатной тест-очисткой. Водогрейные, паровые, жаротрубные. Результат до оплаты."
 hero_image: "/images/services/boiler-cleaning.webp"
 og_image: "/images/og/boiler-cleaning.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-07"
 updated: "2026-02-07"
 cta_primary:

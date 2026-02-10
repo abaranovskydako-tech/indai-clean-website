@@ -3,7 +3,7 @@
 
 **Project:** INDAI Clean  
 **Document role:** Canonical structure and rules for service pages  
-**Path:** `02_CONTENT_SERVICES/INDAI_SERVICES_PAGES_CANON.md`  
+**Path:** `02_КОНТЕНТ_УСЛУГИ/INDAI_SERVICES_PAGES_CANON.md`  
 **Status:** CANONICAL — ACTIVE  
 **Document-ID:** INDAI-CONTENT-001  
 **Version:** 3.0.0  
@@ -49,7 +49,7 @@ INDAI_PRODUCT_COPY.md             ← UVP, CTA, product logic
 INDAI_SERVICES_PAGES_CANON.md     ← structure & rules (this file)
   ↓
 Service content files
-(02_CONTENT_SERVICES/content/*.md)
+(02_КОНТЕНТ_УСЛУГИ/*.md)
 ````
 
 ---

@@ -17,7 +17,7 @@
 This addendum establishes:
 
 1. **Tailwind CSS** as the single permitted styling layer for all frontend code.
-2. **Design System** (`/docs/05_DESIGN_SYSTEM/*`) as the canonical source of all UI decisions.
+2. **Design System** (`/docs/00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/*`) as the canonical source of all UI decisions.
 3. Explicit rules for what constitutes a styling violation.
 
 ---
@@ -30,7 +30,7 @@ This addendum establishes:
 |------|------|-----------|
 | `tailwind.config.ts` | Token definitions (colors, spacing, fonts, breakpoints) | Single source of truth for design tokens |
 | `app/globals.css` | Tailwind directives + base resets only | No component styles allowed here |
-| `/docs/05_DESIGN_SYSTEM/*` | Design decisions, component specs, usage rules | Governs all UI implementation |
+| `/docs/00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/*` | Design decisions, component specs, usage rules | Governs all UI implementation |
 
 ### Canonical utility files (styling-related)
 
@@ -45,7 +45,7 @@ This addendum establishes:
 
 ### Mandatory Design System documents
 
-The following documents MUST exist in `/docs/05_DESIGN_SYSTEM/`. Any UI implementation is **blocked** until the relevant document is present.
+The following documents MUST exist in `/docs/00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/`. Any UI implementation is **blocked** until the relevant document is present.
 
 | Document | Status | Governs |
 |----------|--------|---------|
@@ -66,7 +66,7 @@ The following documents MUST exist in `/docs/05_DESIGN_SYSTEM/`. Any UI implemen
 All colors MUST be referenced by Tailwind token name, never by hex value.
 
 The **single source of truth** for the color palette is:
-`/docs/05_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md`
+`/docs/00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/INDAI_COLOR_PALETTE_CANON.md`
 
 ⚠️ Until `INDAI_COLOR_PALETTE_CANON.md` is created, the following **bootstrap palette** applies as a temporary binding reference:
 
@@ -93,7 +93,7 @@ Adding, renaming, or modifying tokens requires either:
 - ✅ All styling via Tailwind utility classes only
 - ✅ Conditional classes via `cn()` helper (from `lib/utils.ts`)
 - ✅ Colors referenced by token name (`text-primary-500`, `bg-accent-500`)
-- ✅ All UI components must conform to `/docs/05_DESIGN_SYSTEM/*`
+- ✅ All UI components must conform to `/docs/00_УПРАВЛЕНИЕ/03_DESIGN_SYSTEM/*`
 - ✅ New components must be validated against Design System before merge
 
 ### FORBIDDEN:

@@ -7,7 +7,7 @@ seo_title: "Гидродинамическая очистка оборудова
 seo_description: "Гидродинамическая очистка промышленного оборудования с бесплатной тест-очисткой. Высокое давление, точный контроль. Результат до оплаты."
 hero_image: "/images/services/hydrodynamic-cleaning.webp"
 og_image: "/images/og/hydrodynamic-cleaning.jpg"
-status: "draft"
+status: "published"
 created: "2026-02-07"
 updated: "2026-02-07"
 cta_primary:
