@@ -80,16 +80,30 @@ export default function Header() {
               </Link>
             </li>
           </ul>
-          <Link href="#quiz">
-            <Button
-              variant="default"
-              className={cn(
-                scrolled ? '' : 'bg-accent-500 text-dark-500 hover:bg-accent-500/90'
-              )}
-            >
-              {UI_LABELS.buttons.headerCta}
-            </Button>
-          </Link>
+          <div className="flex items-center gap-3">
+            <Link href="#quiz">
+              <Button
+                variant="default"
+                className={cn(
+                  scrolled ? '' : 'bg-accent-500 text-dark-500 hover:bg-accent-500/90'
+                )}
+              >
+                {UI_LABELS.buttons.headerCta}
+              </Button>
+            </Link>
+            <Link href="#cta" className="hidden lg:inline-flex">
+              <Button
+                variant="outline"
+                className={cn(
+                  scrolled
+                    ? 'border-dark-500 text-dark-500 hover:bg-dark-500 hover:text-white'
+                    : 'border-light-200/60 text-light-200 hover:bg-white/10 hover:text-white'
+                )}
+              >
+                {UI_LABELS.buttons.headerCtaSecondary}
+              </Button>
+            </Link>
+          </div>
         </nav>
 
         {/* Mobile menu button */}

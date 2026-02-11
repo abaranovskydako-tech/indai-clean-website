@@ -1,10 +1,10 @@
 /**
- * Type definitions for INDAI Clean project
- * 
- * Per MASTER_SPEC §6: types exported from types/index.ts
+ * Shared TypeScript types & interfaces
+ *
+ * Per MASTER_SPEC §6: types in types/index.ts
+ * Per ADDENDUM P0.3: CaseItem replaced by ResultItem
  */
 
-// Process Section Types
 export interface ProcessStep {
   number: number;
   title: string;
@@ -12,7 +12,26 @@ export interface ProcessStep {
   isFree: boolean;
 }
 
-// Cases Section Types
+export interface ServiceCard {
+  slug: string;
+  title: string;
+  description: string;
+  icon: string;
+}
+
+export interface ResultMetric {
+  value: string;
+  label: string;
+}
+
+export interface ResultItem {
+  id: string;
+  object: string;
+  service: string;
+  metrics: ResultMetric[];
+}
+
+/** @deprecated Use ResultItem instead. Per ADDENDUM P0.3. */
 export interface CaseItem {
   id: string;
   title: string;
@@ -23,22 +42,19 @@ export interface CaseItem {
   result: string;
 }
 
-// Trust Section Types
 export interface TrustSignal {
   id: string;
-  icon: string; // Lucide icon name
+  icon: string;
   title: string;
   description: string;
 }
 
-// FAQ Section Types
 export interface FAQItem {
   id: string;
   question: string;
   answer: string;
 }
 
-// Gallery Section Types
 export interface GalleryImage {
   id: string;
   src: string;
@@ -47,10 +63,17 @@ export interface GalleryImage {
   height: number;
 }
 
-// CTA Section Types
+export interface QuizContent {
+  badge: string;
+  heading: string;
+  headingHighlight: string;
+  description: string;
+  cta: string;
+}
+
 export interface CTAContent {
   heading: string;
   description: string;
   buttonText: string;
+  secondaryButtonText?: string;
 }
-

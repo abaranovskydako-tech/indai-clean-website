@@ -1,9 +1,9 @@
 /**
  * Content constants for homepage sections
- * 
+ *
  * Per MASTER_SPEC §6: content data in lib/constants.ts
- * 
- * Note: When dedicated content MD files are created, these constants will be replaced.
+ * Per ADDENDUM P0.3: forbidden CTA formulations replaced
+ *
  * Content text is in Russian per MASTER_SPEC §4 (user-facing = Russian).
  */
 
@@ -21,10 +21,18 @@ export const UI_LABELS = {
   buttons: {
     services: 'Услуги',
     backToHome: 'Вернуться на главную',
-    headerCta: 'Рассчитать стоимость',
+    headerCta: 'Обсудить задачу',
+    headerCtaSecondary: 'Отправить ТЗ',
+    learnMore: 'Подробнее',
   },
   badges: {
     free: 'Бесплатно',
+  },
+  results: {
+    viewDetails: 'Подробнее',
+  },
+  gallery: {
+    photoPlaceholder: 'Фото скоро',
   },
   skipLink: 'Перейти к основному содержимому',
 } as const;
@@ -35,11 +43,12 @@ export const UI_LABELS = {
 export const SECTION_HEADINGS = {
   process: 'Процесс работы',
   services: 'Услуги',
-  cases: 'Кейсы',
+  results: 'Результаты работ',
+  resultsSubtitle: 'Реальные проекты с измеримыми результатами',
   quiz: {
-    title: 'Калькулятор стоимости',
-    description: 'Рассчитайте стоимость очистки вашего оборудования. Калькулятор будет доступен в ближайшее время.',
-    buttonPlaceholder: 'Калькулятор скоро будет доступен',
+    title: 'Инженерный расчёт',
+    description: 'Опишите вашу задачу — получите предварительный расчёт сроков и подход к очистке.',
+    buttonPlaceholder: 'Форма скоро будет доступна',
   },
   trust: 'Гарантии и доверие',
   gallery: 'Галерея работ',
@@ -73,7 +82,6 @@ export const PAGE_METADATA = {
 
 // ============================================
 // HERO SECTION CONTENT
-// Per MASTER_SPEC §10.3 #1: УТП + CTA
 // ============================================
 export const HERO_CONTENT = {
   badge: 'Промышленная очистка',
@@ -84,8 +92,8 @@ export const HERO_CONTENT = {
   },
   description: 'Химическая и гидродинамическая очистка котлов, теплообменников, трубопроводов и резервуаров. 3 шага бесплатно — оплата только за результат.',
   cta: {
-    primary: 'Рассчитать стоимость',
-    secondary: 'Наши услуги',
+    primary: 'Забронировать тест-очистку',
+    secondary: 'Описать объект',
   },
   stats: [
     { value: '3', label: 'шага бесплатно' },
@@ -95,19 +103,58 @@ export const HERO_CONTENT = {
 } as const;
 
 // ============================================
-// SECTION CONTENT (arrays from types)
+// SECTION CONTENT
 // ============================================
 import type {
   ProcessStep,
-  CaseItem,
+  ResultItem,
   TrustSignal,
   FAQItem,
   GalleryImage,
   CTAContent,
+  ServiceCard,
+  QuizContent,
 } from '@/types';
 
-// Process Section Content
-// Per MASTER_SPEC §10.3 #2: 4 steps (3 free)
+export const SERVICE_CARDS: ServiceCard[] = [
+  {
+    slug: 'heat-exchanger-cleaning',
+    title: 'Промывка теплообменников',
+    description: 'Восстановление теплоотдачи пластинчатых, кожухотрубных и спиральных теплообменников.',
+    icon: 'Thermometer',
+  },
+  {
+    slug: 'boiler-cleaning',
+    title: 'Промывка котлов',
+    description: 'Удаление накипи и отложений из водогрейных, паровых и жаротрубных котлов.',
+    icon: 'Flame',
+  },
+  {
+    slug: 'pipe-cleaning',
+    title: 'Чистка труб и трубопроводов',
+    description: 'Восстановление пропускной способности и снижение гидравлического сопротивления.',
+    icon: 'PipetteIcon',
+  },
+  {
+    slug: 'tank-cleaning',
+    title: 'Очистка резервуаров и ёмкостей',
+    description: 'Восстановление рабочего объёма нефтяных, водяных и технологических ёмкостей.',
+    icon: 'Container',
+  },
+  {
+    slug: 'chemical-cleaning',
+    title: 'Химическая очистка',
+    description: 'Растворение и удаление отложений специализированными составами без механического воздействия.',
+    icon: 'FlaskConical',
+  },
+  {
+    slug: 'hydrodynamic-cleaning',
+    title: 'Гидродинамическая очистка',
+    description: 'Удаление отложений водой под высоким давлением без повреждения поверхностей.',
+    icon: 'Droplets',
+  },
+];
+
 export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: 1,
@@ -124,7 +171,7 @@ export const PROCESS_STEPS: ProcessStep[] = [
   {
     number: 3,
     title: 'Инженерный расчёт',
-    description: 'Бесплатный расчёт стоимости и сроков работ на основе результатов тест-очистки.',
+    description: 'Бесплатный расчёт сроков и подхода на основе результатов тест-очистки.',
     isFree: true,
   },
   {
@@ -135,32 +182,39 @@ export const PROCESS_STEPS: ProcessStep[] = [
   },
 ];
 
-// Cases Section Content
-// Per MASTER_SPEC §10.3 #4: Before/After cases
-// Placeholder data — real cases will come from content files when available
-export const CASES: CaseItem[] = [
+export const RESULTS: ResultItem[] = [
   {
-    id: 'case-1',
-    title: 'Промывка теплообменника',
-    beforeImage: '/images/cases/case-1-before.jpg',
-    beforeAlt: 'Теплообменник до очистки — заросший накипью',
-    afterImage: '/images/cases/case-1-after.jpg',
-    afterAlt: 'Теплообменник после очистки — полностью восстановлен',
-    result: 'Восстановлена теплоотдача на 35%. Снижен расход топлива на 12%.',
+    id: 'result-1',
+    object: 'ТЭЦ-23, Москва',
+    service: 'Очистка теплообменников',
+    metrics: [
+      { value: '+31%', label: 'КПД' },
+      { value: '3М ₽', label: 'экономия/год' },
+      { value: '2 дня', label: 'срок работ' },
+    ],
   },
   {
-    id: 'case-2',
-    title: 'Очистка трубопровода',
-    beforeImage: '/images/cases/case-2-before.jpg',
-    beforeAlt: 'Трубопровод до очистки — засорён отложениями',
-    afterImage: '/images/cases/case-2-after.jpg',
-    afterAlt: 'Трубопровод после очистки — пропускная способность восстановлена',
-    result: 'Восстановлена пропускная способность на 40%. Устранены гидравлические потери.',
+    id: 'result-2',
+    object: 'Котельная №7, Казань',
+    service: 'Промывка котлов',
+    metrics: [
+      { value: '-1.5 атм', label: 'давление' },
+      { value: '28%', label: 'рост КПД' },
+      { value: '1 день', label: 'без остановки' },
+    ],
+  },
+  {
+    id: 'result-3',
+    object: 'НПЗ, Самара',
+    service: 'Очистка трубопроводов',
+    metrics: [
+      { value: '+40%', label: 'пропускная способность' },
+      { value: '18 мес', label: 'гарантия' },
+      { value: '3 дня', label: 'срок работ' },
+    ],
   },
 ];
 
-// Trust Section Content
-// Per MASTER_SPEC §10.3 #6: Guarantees & trust signals
 export const TRUST_SIGNALS: TrustSignal[] = [
   {
     id: 'trust-1',
@@ -188,8 +242,6 @@ export const TRUST_SIGNALS: TrustSignal[] = [
   },
 ];
 
-// FAQ Section Content
-// Per MASTER_SPEC §10.3 #8: Questions & answers
 export const FAQ_ITEMS: FAQItem[] = [
   {
     id: 'faq-1',
@@ -213,9 +265,6 @@ export const FAQ_ITEMS: FAQItem[] = [
   },
 ];
 
-// Gallery Section Content
-// Per MASTER_SPEC §10.3 #7: Work photos
-// Placeholder data — real images will be added when available
 export const GALLERY_IMAGES: GalleryImage[] = [
   {
     id: 'gallery-1',
@@ -247,11 +296,17 @@ export const GALLERY_IMAGES: GalleryImage[] = [
   },
 ];
 
-// CTA Section Content
-// Per MASTER_SPEC §10.3 #9: Final call-to-action
-export const CTA_CONTENT: CTAContent = {
-  heading: 'Готовы начать?',
-  description: 'Запишитесь на бесплатную консультацию и тест-очистку. Результат до оплаты.',
-  buttonText: 'Записаться на консультацию',
+export const QUIZ_CONTENT: QuizContent = {
+  badge: 'Инженерный подход',
+  heading: 'Опишите вашу задачу',
+  headingHighlight: '— получите расчёт',
+  description: 'Ответьте на 3 вопроса о вашем оборудовании — получите предварительный расчёт сроков и подход к очистке.',
+  cta: 'Получить инженерный расчёт',
 };
 
+export const CTA_CONTENT: CTAContent = {
+  heading: 'Готовы начать?',
+  description: 'Забронируйте бесплатную тест-очистку или отправьте техническое задание — мы свяжемся в течение 2 часов.',
+  buttonText: 'Забронировать тест-очистку',
+  secondaryButtonText: 'Отправить ТЗ',
+};
