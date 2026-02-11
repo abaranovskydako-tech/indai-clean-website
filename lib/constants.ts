@@ -15,10 +15,13 @@ export const UI_LABELS = {
     home: 'Главная',
     services: 'Услуги',
     ariaLabel: 'Основная навигация',
+    mobileMenuOpen: 'Открыть меню',
+    mobileMenuClose: 'Закрыть меню',
   },
   buttons: {
     services: 'Услуги',
     backToHome: 'Вернуться на главную',
+    headerCta: 'Рассчитать стоимость',
   },
   badges: {
     free: 'Бесплатно',
@@ -66,6 +69,29 @@ export const PAGE_METADATA = {
     title: 'Услуги | INDAI Clean',
     description: 'Промышленная очистка оборудования',
   },
+} as const;
+
+// ============================================
+// HERO SECTION CONTENT
+// Per MASTER_SPEC §10.3 #1: УТП + CTA
+// ============================================
+export const HERO_CONTENT = {
+  badge: 'Промышленная очистка',
+  heading: {
+    line1: 'Чистота промышленного',
+    highlight: 'оборудования',
+    line2: 'без компромиссов',
+  },
+  description: 'Химическая и гидродинамическая очистка котлов, теплообменников, трубопроводов и резервуаров. 3 шага бесплатно — оплата только за результат.',
+  cta: {
+    primary: 'Рассчитать стоимость',
+    secondary: 'Наши услуги',
+  },
+  stats: [
+    { value: '3', label: 'шага бесплатно' },
+    { value: '35%', label: 'рост теплоотдачи' },
+    { value: '1-3', label: 'дня на очистку' },
+  ],
 } as const;
 
 // ============================================
