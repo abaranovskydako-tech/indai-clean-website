@@ -142,10 +142,10 @@ export const SERVICE_CARDS: ServiceCard[] = [
     icon: 'Container',
   },
   {
-    slug: 'chemical-cleaning',
-    title: 'Химическая очистка',
-    description: 'Растворение и удаление отложений специализированными составами без механического воздействия.',
-    icon: 'FlaskConical',
+    slug: 'hydro-cutting',
+    title: 'Гидрорезка',
+    description: 'Резка металла, бетона и других материалов водой под сверхвысоким давлением без нагрева и деформации.',
+    icon: 'Scissors',
   },
   {
     slug: 'hydrodynamic-cleaning',

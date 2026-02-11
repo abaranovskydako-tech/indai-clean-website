@@ -6,7 +6,7 @@ import {
   Flame,
   Pipette,
   Container,
-  FlaskConical,
+  Scissors,
   Droplets,
   ArrowRight,
 } from 'lucide-react';
@@ -26,7 +26,7 @@ const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
   Flame,
   PipetteIcon: Pipette,
   Container,
-  FlaskConical,
+  Scissors,
   Droplets,
 };
 
