@@ -51,8 +51,14 @@ export default function HeroSection() {
           </Badge>
 
           <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight tracking-tight text-white">
-            {HERO_CONTENT.heading.line1}{' '}
-            <span className="text-accent-500">{HERO_CONTENT.heading.highlight}</span>{' '}
+            {HERO_CONTENT.heading.line1}
+            {HERO_CONTENT.heading.highlight && (
+              <>
+                {' '}
+                <span className="text-accent-500">{HERO_CONTENT.heading.highlight}</span>
+              </>
+            )}
+            <br />
             {HERO_CONTENT.heading.line2}
           </h1>
 
