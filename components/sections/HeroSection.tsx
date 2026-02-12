@@ -77,8 +77,11 @@ export default function HeroSection() {
             {HERO_CONTENT.heading.line2}
           </h1>
 
-          <p className="text-lg md:text-xl text-light-200/80 max-w-2xl leading-relaxed">
-            {HERO_CONTENT.description}
+          <p className="text-xl md:text-2xl font-medium text-white max-w-2xl leading-relaxed">
+            {HERO_CONTENT.descriptionLine1}
+          </p>
+          <p className="mt-4 text-lg md:text-xl text-white/80 max-w-2xl leading-relaxed">
+            {HERO_CONTENT.descriptionLine2}
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
