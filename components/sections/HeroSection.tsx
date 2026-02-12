@@ -102,17 +102,19 @@ export default function HeroSection() {
           </div>
         </div>
 
-        {/* Stats row */}
-        <div className="mt-16 md:mt-20 pt-12 border-t border-white/20">
-          <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
-            {HERO_CONTENT.stats.map((stat, index) => (
-              <div key={index} className="text-center md:text-left">
-                <p className="text-3xl font-bold text-accent-500">{stat.value}</p>
-                <p className="text-sm text-light-200/60 mt-1">{stat.label}</p>
-              </div>
-            ))}
+        {/* Stats row — renders only when stats are provided */}
+        {HERO_CONTENT.stats.length > 0 && (
+          <div className="mt-16 md:mt-20 pt-12 border-t border-white/20">
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-8 md:gap-12">
+              {HERO_CONTENT.stats.map((stat, index) => (
+                <div key={index} className="text-center md:text-left">
+                  <p className="text-3xl font-bold text-accent-500">{stat.value}</p>
+                  <p className="text-sm text-light-200/60 mt-1">{stat.label}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
+        )}
       </div>
     </section>
   );

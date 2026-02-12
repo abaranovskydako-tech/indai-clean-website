@@ -96,11 +96,7 @@ export const HERO_CONTENT = {
     primary: 'Забронировать тест-очистку',
     secondary: 'Наши услуги',
   },
-  stats: [
-    { value: '3', label: 'шага бесплатно' },
-    { value: '35%', label: 'рост теплоотдачи' },
-    { value: '1-3', label: 'дня на очистку' },
-  ],
+  stats: [] as ReadonlyArray<{ value: string; label: string }>,
 } as const;
 
 // ============================================
