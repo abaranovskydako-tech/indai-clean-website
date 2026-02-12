@@ -17,6 +17,7 @@ export const UI_LABELS = {
     ariaLabel: 'Основная навигация',
     mobileMenuOpen: 'Открыть меню',
     mobileMenuClose: 'Закрыть меню',
+    phone: '+7 (495) 123-45-67',
   },
   buttons: {
     services: 'Услуги',

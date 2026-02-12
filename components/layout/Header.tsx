@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { UI_LABELS } from '@/lib/constants';
 import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
-import { Menu, X } from 'lucide-react';
+import { Menu, X, Phone } from 'lucide-react';
 
 /**
  * Header component
@@ -80,6 +80,15 @@ export default function Header() {
               </Link>
             </li>
           </ul>
+          <a
+            href="tel:+74951234567"
+            className={cn(
+              'hidden lg:block font-semibold transition-colors',
+              scrolled ? 'text-dark-500 hover:text-primary-500' : 'text-light-200 hover:text-white'
+            )}
+          >
+            {UI_LABELS.nav.phone}
+          </a>
           <div className="flex items-center gap-3">
             <Link href="#quiz">
               <Button
@@ -151,6 +160,17 @@ export default function Header() {
             >
               {UI_LABELS.nav.services}
             </Link>
+            <a
+              href="tel:+74951234567"
+              className={cn(
+                'flex items-center gap-2 py-2 font-semibold transition-colors',
+                scrolled ? 'text-dark-500 hover:text-primary-500' : 'text-light-200 hover:text-white'
+              )}
+              onClick={() => setMobileMenuOpen(false)}
+            >
+              <Phone className="w-4 h-4" aria-hidden />
+              {UI_LABELS.nav.phone}
+            </a>
             <Link
               href="#quiz"
               onClick={() => setMobileMenuOpen(false)}
