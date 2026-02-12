@@ -10,35 +10,26 @@ import { ArrowRight } from 'lucide-react';
  * Per Component Library Canon v1.0.0
  * Location: components/sections/HeroSection.tsx
  *
- * Full-height dark gradient hero with CTAs and stats.
+ * Full-height hero with background video and CTAs/stats.
  * Per HERO_DESIGN_CONCEPT_CANON_v2: restrained, engineering reliability, calm.
+ * Per HERO_VIDEO_CANON v2.0.0: muted, autoplay, loop, background only.
  */
 export default function HeroSection() {
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Dark gradient background */}
-      <div
-        className="absolute inset-0 bg-gradient-to-b from-dark-500 via-ocean-500/80 to-dark-500"
-        aria-hidden
-      />
-
-      {/* Subtle dot pattern overlay */}
-      <div
-        className="absolute inset-0 opacity-30 bg-[radial-gradient(circle_at_center,rgba(255,255,255,0.15)_1px,transparent_1px)] bg-[length:24px_24px]"
-        aria-hidden
-      />
-
-      {/* Decorative gradient orb - top right */}
-      <div
-        className="absolute top-0 right-0 w-96 h-96 bg-primary-500/20 rounded-full blur-3xl -translate-y-1/2 translate-x-1/2"
-        aria-hidden
-      />
-
-      {/* Decorative gradient orb - bottom left */}
-      <div
-        className="absolute bottom-0 left-0 w-64 h-64 bg-accent-500/10 rounded-full blur-3xl translate-y-1/2 -translate-x-1/2"
-        aria-hidden
-      />
+      {/* Background video + dark overlay */}
+      <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        <video
+          autoPlay
+          loop
+          muted
+          playsInline
+          className="absolute inset-0 w-full h-full object-cover"
+        >
+          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+        </video>
+        <div className="absolute inset-0 bg-dark-500/60" />
+      </div>
 
       {/* Content */}
       <div className="relative z-10 flex flex-1 flex-col justify-center container mx-auto px-4 pt-32 pb-20">
