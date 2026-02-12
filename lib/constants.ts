@@ -23,7 +23,7 @@ export const UI_LABELS = {
     services: 'Услуги',
     backToHome: 'Вернуться на главную',
     headerCta: 'Обсудить задачу',
-    headerCtaSecondary: 'Отправить ТЗ',
+    headerCtaSecondary: 'Пригласить на тендер',
     learnMore: 'Подробнее',
   },
   badges: {
@@ -95,8 +95,9 @@ export const HERO_CONTENT = {
   descriptionLine2: 'Выезд технолога, подбор технологического решения и тест-очистка — бесплатно.',
   cta: {
     primary: 'Забронировать тест-очистку',
-    secondary: 'Наши услуги',
+    secondary: 'Отправить ТЗ',
   },
+  trustLine: 'Работаем по всей России · Собственный парк оборудования Kärcher',
   stats: [] as ReadonlyArray<{ value: string; label: string }>,
 } as const;
 

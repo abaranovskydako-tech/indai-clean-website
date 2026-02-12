@@ -103,6 +103,12 @@ export default function HeroSection() {
               </Button>
             </Link>
           </div>
+
+          {HERO_CONTENT.trustLine && (
+            <p className="text-white/60 text-sm mt-6">
+              {HERO_CONTENT.trustLine}
+            </p>
+          )}
         </div>
 
         {/* Stats row — renders only when stats are provided */}
