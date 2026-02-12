@@ -1,3 +1,6 @@
+'use client';
+
+import { useEffect, useRef } from 'react';
 import Link from 'next/link';
 import { HERO_CONTENT } from '@/lib/constants';
 import Button from '@/components/ui/Button';
@@ -15,19 +18,40 @@ import { ArrowRight } from 'lucide-react';
  * Per HERO_VIDEO_CANON v2.0.0: muted, autoplay, loop, background only.
  */
 export default function HeroSection() {
+  const videoRef = useRef<HTMLVideoElement>(null);
+
+  useEffect(() => {
+    const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
+    if (mq.matches && videoRef.current) {
+      videoRef.current.pause();
+    }
+    const handler = (e: MediaQueryListEvent) => {
+      if (e.matches) videoRef.current?.pause();
+      else videoRef.current?.play();
+    };
+    mq.addEventListener('change', handler);
+    return () => mq.removeEventListener('change', handler);
+  }, []);
+
   return (
-    <section className="relative min-h-screen flex flex-col overflow-hidden">
-      {/* Background video + dark overlay */}
+    <section className="relative min-h-screen flex flex-col overflow-hidden bg-dark-500">
+      {/* Background video — per INDAI_HERO_VIDEO_CANON.md */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
         <video
+          ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
+          poster="/images/hero/hero-poster.webp"
+          width={1280}
+          height={720}
           className="absolute inset-0 w-full h-full object-cover"
         >
+          <source src="/videos/hero-bg.webm" type="video/webm" />
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
+        {/* Dark overlay for text readability — dark-500 at 60% */}
         <div className="absolute inset-0 bg-dark-500/60" />
       </div>
 
