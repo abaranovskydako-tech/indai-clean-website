@@ -1,7 +1,6 @@
 import Image from 'next/image';
 import { TRUST_SIGNALS, SECTION_HEADINGS } from '@/lib/constants';
 import Card from '@/components/ui/Card';
-import Badge from '@/components/ui/Badge';
 import { Shield, CheckCircle, Users, Clock } from 'lucide-react';
 
 /**
@@ -59,31 +58,40 @@ export default function TrustSection() {
           })}
         </div>
 
-        {/* Kärcher Partnership — photo proof */}
-        <div className="mt-16 overflow-hidden rounded-2xl bg-dark-500">
-          <div className="grid grid-cols-1 items-center gap-0 md:grid-cols-2">
-            {/* Team photo */}
-            <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[320px]">
+        {/* Kärcher Partnership — team photos */}
+        <div className="mt-16 grid grid-cols-1 gap-6 md:grid-cols-2">
+          {/* Photo 1: Team at Kärcher stand */}
+          <div className="relative overflow-hidden rounded-2xl shadow-xl">
+            <div className="relative aspect-[4/3]">
               <Image
-                src="/photos/karcher_training_03_team.jpg"
-                alt="Команда INDAI Clean на площадке Kärcher — 13 сертифицированных инженеров"
+                src="/media/trust/karcher-team.webp"
+                alt="Команда INDAI Clean на площадке Kärcher"
                 fill
                 className="object-cover"
                 sizes="(max-width: 768px) 100vw, 50vw"
               />
             </div>
-            {/* Text block */}
-            <div className="px-8 py-10 md:px-12">
-              <Badge variant="accent" className="mb-4">
-                Партнёр Kärcher
-              </Badge>
-              <h3 className="mb-3 text-2xl font-bold text-white">
-                Сертифицированные инженеры
-              </h3>
-              <p className="text-base leading-relaxed text-white/70">
-                Наша команда прошла обучение на индустриальной площадке Kärcher
-                в Москве. 13 инженеров сертифицированы для работы
-                с промышленным оборудованием Kärcher.
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-500 via-dark-500/80 to-transparent p-6">
+              <p className="text-sm font-semibold text-white">
+                Сертифицированная команда Kärcher
+              </p>
+            </div>
+          </div>
+
+          {/* Photo 2: Training at Kärcher facility */}
+          <div className="relative overflow-hidden rounded-2xl shadow-xl">
+            <div className="relative aspect-[4/3]">
+              <Image
+                src="/media/trust/karcher-training.webp"
+                alt="Обучение инженеров на оборудовании Kärcher"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            <div className="absolute bottom-0 left-0 right-0 bg-gradient-to-t from-dark-500 via-dark-500/80 to-transparent p-6">
+              <p className="text-sm font-semibold text-white">
+                Регулярное обучение и аттестация
               </p>
             </div>
           </div>

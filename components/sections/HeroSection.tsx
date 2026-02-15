@@ -41,7 +41,7 @@ export default function HeroSection() {
         {/* Mobile background image */}
         <div className="md:hidden absolute inset-0">
           <Image
-            src="/images/hero/hero-poster-mobile.webp"
+            src="/media/hero/hero-poster-mobile.webp"
             alt=""
             fill
             priority
@@ -56,17 +56,16 @@ export default function HeroSection() {
           loop
           muted
           playsInline
-          poster="/photos/karcher_training_02_hydro_wall.jpg"
+          poster="/media/gallery/frames/reservoir-cryoblasting-poster.webp"
           width={1280}
           height={720}
           className="hidden md:block absolute inset-0 w-full h-full object-cover"
         >
-          <source src="/videos/hero-bg.webm" type="video/webm" />
-          <source src="/videos/hero-bg.mp4" type="video/mp4" />
+          <source src="/media/gallery/videos/reservoir-cryoblasting.mp4" type="video/mp4" />
         </video>
 
-        {/* Dark overlay for text readability — dark-500 at 60% */}
-        <div className="absolute inset-0 bg-dark-500/60" />
+        {/* Dark overlay for text readability — dark-500 at 70% */}
+        <div className="absolute inset-0 bg-dark-500/70" />
       </div>
 
       {/* Content */}
