@@ -55,12 +55,25 @@ export interface FAQItem {
   answer: string;
 }
 
+/** @deprecated Use GalleryCard instead. Kept for backward compatibility. */
 export interface GalleryImage {
   id: string;
   src: string;
   alt: string;
   width: number;
   height: number;
+}
+
+export interface GalleryCard {
+  id: string;
+  title: string;
+  description: string;
+  method: string;
+  industry: string;
+  poster: string;
+  video?: string;
+  posterWidth: number;
+  posterHeight: number;
 }
 
 export interface QuizContent {

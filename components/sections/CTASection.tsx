@@ -1,3 +1,6 @@
+'use client';
+
+import Link from 'next/link';
 import { CTA_CONTENT } from '@/lib/constants';
 import Button from '@/components/ui/Button';
 
@@ -28,16 +31,32 @@ export default function CTASection() {
           {CTA_CONTENT.description}
         </p>
         <div className="flex flex-col items-center justify-center gap-4 sm:flex-row">
-          <Button variant="default" className="px-8 py-3 text-lg font-semibold">
-            {CTA_CONTENT.buttonText}
-          </Button>
-          {CTA_CONTENT.secondaryButtonText && (
-            <Button
-              variant="outline"
-              className="border-white px-8 py-3 text-lg font-semibold text-white hover:bg-white hover:text-dark-500"
-            >
-              {CTA_CONTENT.secondaryButtonText}
+          <Link 
+            href="#quiz-form"
+            onClick={(e) => {
+              e.preventDefault();
+              document.getElementById('quiz-form')?.scrollIntoView({ behavior: 'smooth' });
+            }}
+          >
+            <Button variant="default" className="px-8 py-3 text-lg font-semibold">
+              {CTA_CONTENT.buttonText}
             </Button>
+          </Link>
+          {CTA_CONTENT.secondaryButtonText && (
+            <Link
+              href="#quiz-form"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('quiz-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
+              <Button
+                variant="outline"
+                className="border-white px-8 py-3 text-lg font-semibold text-white hover:bg-white hover:text-dark-500"
+              >
+                {CTA_CONTENT.secondaryButtonText}
+              </Button>
+            </Link>
           )}
         </div>
       </div>

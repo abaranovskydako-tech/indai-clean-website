@@ -10,5 +10,29 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Deferred: Lead, Service, and other models will be added
-// when the corresponding features are implemented per §12.
+enum LeadSource {
+  form
+  quiz
+  callback
+}
+
+model Lead {
+  id             String     @id @default(cuid())
+  name           String
+  phone          String
+  email          String?
+  company        String?
+  message        String?    @db.Text
+  source         LeadSource
+  equipmentType  String?
+  status         String     @default("new")
+  utmSource      String?
+  utmMedium      String?
+  utmCampaign    String?
+  createdAt      DateTime   @default(now())
+  updatedAt      DateTime   @updatedAt
+
+  @@index([phone])
+  @@index([status])
+  @@index([createdAt])
+}

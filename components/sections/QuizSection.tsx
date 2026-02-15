@@ -1,8 +1,9 @@
-import Link from 'next/link';
+'use client';
+
 import Badge from '@/components/ui/Badge';
-import Button from '@/components/ui/Button';
 import { QUIZ_CONTENT } from '@/lib/constants';
 import { Calculator } from 'lucide-react';
+import LeadForm from '@/components/forms/LeadForm';
 
 /**
  * QuizSection component
@@ -11,7 +12,7 @@ import { Calculator } from 'lucide-react';
  * Location: components/sections/QuizSection.tsx
  * Per MASTER_SPEC §10.3 #5: Cost calculator CTA
  *
- * Dark accent block with Badge, heading highlight, CTA button.
+ * Dark accent block with Badge, heading highlight, lead form.
  */
 export default function QuizSection() {
   return (
@@ -38,11 +39,9 @@ export default function QuizSection() {
           {QUIZ_CONTENT.description}
         </p>
 
-        <Link href="#quiz-form">
-          <Button variant="default" className="px-8 py-3 text-lg font-semibold">
-            {QUIZ_CONTENT.cta}
-          </Button>
-        </Link>
+        <div id="quiz-form" className="mt-8">
+          <LeadForm source="form" className="max-w-lg mx-auto" />
+        </div>
       </div>
     </section>
   );

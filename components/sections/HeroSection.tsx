@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { HERO_CONTENT } from '@/lib/constants';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
@@ -35,22 +36,35 @@ export default function HeroSection() {
 
   return (
     <section className="relative min-h-screen flex flex-col overflow-hidden bg-dark-500">
-      {/* Background video — per INDAI_HERO_VIDEO_CANON.md */}
+      {/* Background media — video on desktop, image on mobile */}
       <div className="absolute inset-0 overflow-hidden" aria-hidden="true">
+        {/* Mobile background image */}
+        <div className="md:hidden absolute inset-0">
+          <Image
+            src="/images/hero/hero-poster-mobile.webp"
+            alt=""
+            fill
+            priority
+            className="object-cover"
+          />
+        </div>
+
+        {/* Desktop background video */}
         <video
           ref={videoRef}
           autoPlay
           loop
           muted
           playsInline
-          poster="/images/hero/hero-poster.webp"
+          poster="/photos/karcher_training_02_hydro_wall.jpg"
           width={1280}
           height={720}
-          className="absolute inset-0 w-full h-full object-cover"
+          className="hidden md:block absolute inset-0 w-full h-full object-cover"
         >
           <source src="/videos/hero-bg.webm" type="video/webm" />
           <source src="/videos/hero-bg.mp4" type="video/mp4" />
         </video>
+
         {/* Dark overlay for text readability — dark-500 at 60% */}
         <div className="absolute inset-0 bg-dark-500/60" />
       </div>
@@ -85,7 +99,13 @@ export default function HeroSection() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4">
-            <Link href="#quiz">
+            <Link 
+              href="#quiz-form"
+              onClick={(e) => {
+                e.preventDefault();
+                document.getElementById('quiz-form')?.scrollIntoView({ behavior: 'smooth' });
+              }}
+            >
               <Button
                 variant="default"
                 className="w-full sm:w-auto inline-flex items-center justify-center gap-2 bg-accent-500 text-dark-500 hover:opacity-90 px-6 py-3 text-base"

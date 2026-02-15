@@ -1,5 +1,7 @@
+import Image from 'next/image';
 import { TRUST_SIGNALS, SECTION_HEADINGS } from '@/lib/constants';
 import Card from '@/components/ui/Card';
+import Badge from '@/components/ui/Badge';
 import { Shield, CheckCircle, Users, Clock } from 'lucide-react';
 
 /**
@@ -8,6 +10,7 @@ import { Shield, CheckCircle, Users, Clock } from 'lucide-react';
  * Per Component Library Canon v1.0.0
  * Location: components/sections/TrustSection.tsx
  * Per MASTER_SPEC §10.3 #6: Guarantees & trust signals
+ * Per MEDIA_PLACEMENT_PLAN v1.0: Kärcher team photo block
  */
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -54,6 +57,36 @@ export default function TrustSection() {
               </Card>
             );
           })}
+        </div>
+
+        {/* Kärcher Partnership — photo proof */}
+        <div className="mt-16 overflow-hidden rounded-2xl bg-dark-500">
+          <div className="grid grid-cols-1 items-center gap-0 md:grid-cols-2">
+            {/* Team photo */}
+            <div className="relative aspect-[16/9] md:aspect-auto md:min-h-[320px]">
+              <Image
+                src="/photos/karcher_training_03_team.jpg"
+                alt="Команда INDAI Clean на площадке Kärcher — 13 сертифицированных инженеров"
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 50vw"
+              />
+            </div>
+            {/* Text block */}
+            <div className="px-8 py-10 md:px-12">
+              <Badge variant="accent" className="mb-4">
+                Партнёр Kärcher
+              </Badge>
+              <h3 className="mb-3 text-2xl font-bold text-white">
+                Сертифицированные инженеры
+              </h3>
+              <p className="text-base leading-relaxed text-white/70">
+                Наша команда прошла обучение на индустриальной площадке Kärcher
+                в Москве. 13 инженеров сертифицированы для работы
+                с промышленным оборудованием Kärcher.
+              </p>
+            </div>
+          </div>
         </div>
       </div>
     </section>
